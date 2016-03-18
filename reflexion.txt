@@ -69,6 +69,15 @@ client attend entre 10 min et 40min
 
 
 
+ASTUCE :
+restaurateur appelle fct rungis et en l'appelant elle rappelle une promesse(promises, si ouvert resolve on donne le nom sinon reject 
+pareil pour aller manger dans un restau 
+
+quand il se faire rejeter, il attend 
+
+des que ca prend du temps => promises 
+
+
 
 
 
