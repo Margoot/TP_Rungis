@@ -1,0 +1,74 @@
+REFLEXION TP
+
+3 classes : 
+classe Marchand
+classe restaurateur
+classe client 
+
+constantes pour chaque classe : 
+const minToSecond = 100
+const hourToSecond = 10000
+
+classe marchand : 
+heure ouverture 5 à 14h 
+random tps de ravitaillement 
+var aleatoire = heure ouverture 
+var aleatoire = tps de ravitailement
+aliments 
+début : 5 restaurantes => x plats => x aliments 
+
+class restaurant : 
+var aleatoire = horaires ouvertures 
+bool = ouvert ou fermé 
+(si ouvert => client , si fermé => pas de client) 
+var aleatoire = tps de cuisine 
+var plat = ingrédient (nbr)
+var = plat (tel plat contient tel ingrédient, s’il manque 1 ingrédient => autre plat aléatoire) 
+
+class Client : 
+var aléatoire = restaurant 
+if bool fermé => var 10 min (temps d’attente du client) puis random restaurant (var restaurant) 
+
+var aléatoire = plat choisi
+fct faire plat : 
+	if (assez d’ingrédients) => faire plat 
+	else if random plat 
+	else viré client + fermeture du restaurant (bool fermé) 
+
+var aléatoire= tps d’attente 
+if tps max !=40 ou tps min != 10) => delete client 
+
+
+fct random en js : 
+nbr de 1 a 10 : 
+Math.floor((Math.random()*10)+1) ;
+
+Score : 
+Chaque client : 1 point
+Si le client est servi avant 10 min de son temps d’attente = 2 points 
+Si le client est servi 5 min après son temps d’attente = 0 points 
+
+Score final = score * nbr heures ouverture 
+
+Enoncé : 
+-	Marché => stock illimité => 5h à 14h 
+Tps de ravitaillement => 15 min à 1h15 
+
+-	Chaque restaurant a ses horaires (random horaires) ex 9h 12h-13h-16h ou 5h-18h
+Tps ou il sert les clients 
+Client servi pdt ouverture 
+Tps de cuisine = 5 à 50 min 
+⎝	Warning : si ingrédients dispo uniquement 
+Unité d’ingrédients 
+
+1 client =>  random rastau
+si restau fermé => client attend 10 min avant tester nouveau 
+si la recette pas possible => client choisi autre recette
+si pas de recette dispo => client delete + fermeture restaurant 
+client attend entre 10 min et 40min 
+
+
+
+
+
+
