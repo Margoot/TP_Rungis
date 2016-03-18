@@ -1,0 +1,21 @@
+{
+  "name": "sample_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-execute": "^0.2.2",
+    "grunt-jscs": "^2.8.0",
+    "jshint-stylish": "^2.1.0",
+    "load-grunt-tasks": "^3.4.1",
+    "time-grunt": "^1.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
