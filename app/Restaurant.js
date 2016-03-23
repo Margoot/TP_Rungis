@@ -30,64 +30,188 @@ class Restaurant {
             "parmesan": 20
         };
 
-        this.recetteA = {
-            "eggs": 2,
-            "pasta": 2,
-            "bacon": 2,
-            "creme": 2,
-            "onions": 2
+        this.recipeA = {
+            "eggs": 1,
+            "pasta": 1,
+            "bacon": 1,
+            "creme": 1,
+            "onions": 1
         };
 
-        this.recetteB = {
-            "salad": 2,
-            "tomatoes": 2,
-            "mozarella": 2,
-            "chicken": 2,
-            "parmesan": 2
+        this.recipeB = {
+            "salad": 1,
+            "tomatoes": 1,
+            "mozarella": 1,
+            "chicken": 1,
+            "parmesan": 1
         };
+
+
 
     }
 
-        createRecetteA() {
-            console.log(this.recetteA[1]);
-            var dispoRecette = true;
-            for (var i = 0; i < this.recetteA.length; i++) {
-                if (this.stock[i] >= this.recetteA[i])
-                    console.log("ok");
-                else
-                    dispoRecette = false;
-            }
-            if (dispoRecette) {
-                for (var i = 0; i < this.recetteA.length; i++)
-                    this.stock[i] -= 1;
-            }
-            else
-                this.createRecetteB();
+    createRecipeA() {
 
-        }
+        var Prepare = new Promise( function (resolve,reject){
+            var numIng = 0;
+            for (var i in this.recipeA) {
+                for (var j in this.stock) {
+                    if (i === j){
+                        if (this.stock[j] !== 0){
+                            numIng++;
+                        }
+                    }
+
+                }
+            }
+            resolve(numIng === 5);
+
+        });
+
+            var consumption = function () {
+                for (var i in this.recipeA) {
+                    for (var j in this.stock){
+                        if(i === j)
+                            this.stock[j]--;
+                    }
+                }
+            };
+
+            Prepare
+                .then(consumption())
+                //.then(cookTime())
+                .catch(this.createRecipeB());
+
+    }
+
+    createRecipeB() {
+
+
+            //var recipeB = this.recipeB; Ca ne marche pas
+            //on ne peut pas utiliser les objets
+            //on ne peut pas utiliser les elements du contructeur
+            // tout ça à vérifier
+            console.log(this.recipeB);
+
+            /*var rec = {
+                "salad": 1,
+                "tomatoes": 1,
+                "mozarella": 1,
+                "chicken": 1,
+                "parmesan": 1
+            }*/ //Comme ça non plus ça ne marche pas
+
+        //seul moyen :
+            var rec = ["salad","tomatoes","mozarella","chicken","parmesan"];
+
+            var prepare = new Promise(function (resolve, reject) {
+
+                    var numIng = 0;
+                    for (var i = 0; i < rec.length; i++)
+                        numIng += 1;//console.log(element);
+
+
+                    /* for (var j in this.stock) {
+                     if (i === j) {
+                     if (this.stock[j] !== 0) {
+                     numIng++;
+                     }
+                     }
+
+                     }*/
+                    resolve(numIng);
+                }
+                //resolve(numIng);
+
+            );
+
+            /*var consumption =function () {
+             for (var i in this.recipeB) {
+             for (var j in this.stock){
+             if(i === j)
+             this.stock[j]--;
+             }
+             }
+             };*/
+
+            prepare
+                .then(function (result) {
+                    console.log(result)
+                })
+                //.then(cookTime())
+                .catch(function () {
+                    console.log("No more recipies bye bye")
+                }); //delete client
+        };
+
+
+
+/*
+        createRecetteA() {
+            var dispoRecette = true;
+            for (var k in this.recetteA) {
+                for (var item in this.stock) {
+                    //console.log(item);
+                    if (k === item) {
+                        if (this.stock[item] !== 0)
+                            console.log("consommation de " + k);
+                        else
+                            dispoRecette = false;
+                    }
+                }
+            }
+            if (dispoRecette)
+            {
+                for (var k in this.recetteA) {
+                    for (var item in this.stock){
+                        if(k === item)
+                            this.stock[item]--;
+                    }
+                }
+
+            }
+            else {
+                this.createRecetteB();
+                //delete client
+            }
+
+        };
+
 
         createRecetteB() {
             var dispoRecette = true;
-            for (var i = 4; i < this.recetteB.length; i++) {
-                if (this.stock[i] >= this.recetteB[i])
-                    console.log("ok");
-                else
-                    dispoRecette = false;
+            for (var k in this.recetteB) {
+                for (var item in this.stock) {
+                    //console.log(item);
+                    if (k === item) {
+                        if (this.stock[item] !== 0)
+                            console.log("consommation de " + k);
+                        else
+                            dispoRecette = false;
+                    }
+                }
             }
-            if (dispoRecette) {
-                for (var i = 4; i < this.recetteB.length; i++)
-                    this.stock[i] -= 1;
+            if (dispoRecette)
+            {
+                for (var k in this.recetteB) {
+                    for (var item in this.stock){
+                        if(k === item)
+                            this.stock[item]--;
+                    }
+                }
+
             }
             else {
-                console.log("il n'y a plus de recette disponible, bye bye");
-                //delete le client;
+                console.log("il n y a plus de recettes disponibles")
+                //delete client
             }
 
-        }
+        };*/
 
-}
+};
+
 
 var r = new Restaurant();
-r.createRecetteA();
-r.createRecetteB();
+
+r.createRecipeB();
 
