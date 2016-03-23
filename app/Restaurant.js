@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const Promises = require ('bluebird');
+const Promise = require ('bluebird');
 
 const MIN_TO_SEC = 100;
 const HOUR_TO_SEC = 10000;
