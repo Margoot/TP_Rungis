@@ -8,8 +8,6 @@ const Promise = require ('bluebird');
 const MIN_TO_SEC = 100;
 const HOUR_TO_SEC = 10000;
 
-
-
 class Restaurant {
     constructor() {
         this.openTime = Math.floor((Math.random() * (24 * HOUR_TO_SEC)) + (HOUR_TO_SEC));
@@ -46,172 +44,83 @@ class Restaurant {
             "parmesan": 1
         };
 
-
-
     }
 
     createRecipeA() {
 
-        var Prepare = new Promise( function (resolve,reject){
+            var prepare = new Promise((resolve, reject) => {
+                var numIng = 0; // instanciation du nbr d'ingrédient à 0
+                // vérification si les ingrédients sont dispo dans le stock
+                for (var i in this.recipeA) {
+                    for (var j in this.stock) {
+                        if (i === j) {
+                            if (stock[j] > 0) {
+                                numIng++; //si l'ingrédient est dispo dans le stock, on incrémente numIng
+                            }
+                        }
+
+                    }
+                }
+                resolve(numIng===5); // resolve si le nombre d'ingrédients est de 5 (car la recette est composée de 5 ing)
+            });
+
+            //fonction pour décrémenter le nombre d'ingrédients présents dans le stock
+            var consumption = function () {
+                for (var i in this.recipeA) {
+                    for (var j in this.stock) {
+                        if (i === j)
+                            this.stock[j]--;
+                    }
+                }
+            };
+            //si c'est ok, on décrémente le nbr d'ingrédients, sinon on passe à la recette B
+            prepare
+                .then(consumption.bind(this))
+                //.then(cookTime())  // fonction non disponible pour le moment
+                .catch(this.createRecipeB);
+
+        }
+
+    createRecipeB() {
+
+        var prepare = new Promise( (resolve, reject) => {
             var numIng = 0;
-            for (var i in this.recipeA) {
+            for (var i in this.recipeB) {
                 for (var j in this.stock) {
-                    if (i === j){
-                        if (this.stock[j] !== 0){
+                    if (i === j) {
+                        if (stock[j] > 0) {
                             numIng++;
                         }
                     }
 
                 }
             }
-            resolve(numIng === 5);
-
+            resolve(numIng===5);
         });
 
-            var consumption = function () {
-                for (var i in this.recipeA) {
-                    for (var j in this.stock){
-                        if(i === j)
-                            this.stock[j]--;
-                    }
-                }
-            };
 
-            Prepare
-                .then(consumption())
-                //.then(cookTime())
-                .catch(this.createRecipeB());
+        var consumption = function () {
+            for (var i in this.recipeB) {
+                for (var j in this.stock) {
+                    if (i === j)
+                        this.stock[j]--;
+                }
+            }
+        };
+
+        prepare
+            .then(consumption.bind(this))
+            //.then(cookTime())  //fonction non défini pour le moment
+            .catch(console.log("aucune recette n'est disponible, bye bye"));
+            
 
     }
 
-    createRecipeB() {
+}
 
-
-            //var recipeB = this.recipeB; Ca ne marche pas
-            //on ne peut pas utiliser les objets
-            //on ne peut pas utiliser les elements du contructeur
-            // tout ça à vérifier
-            console.log(this.recipeB);
-
-            /*var rec = {
-                "salad": 1,
-                "tomatoes": 1,
-                "mozarella": 1,
-                "chicken": 1,
-                "parmesan": 1
-            }*/ //Comme ça non plus ça ne marche pas
-
-        //seul moyen :
-            var rec = ["salad","tomatoes","mozarella","chicken","parmesan"];
-
-            var prepare = new Promise(function (resolve, reject) {
-
-                    var numIng = 0;
-                    for (var i = 0; i < rec.length; i++)
-                        numIng += 1;//console.log(element);
-
-
-                    /* for (var j in this.stock) {
-                     if (i === j) {
-                     if (this.stock[j] !== 0) {
-                     numIng++;
-                     }
-                     }
-
-                     }*/
-                    resolve(numIng);
-                }
-                //resolve(numIng);
-
-            );
-
-            /*var consumption =function () {
-             for (var i in this.recipeB) {
-             for (var j in this.stock){
-             if(i === j)
-             this.stock[j]--;
-             }
-             }
-             };*/
-
-            prepare
-                .then(function (result) {
-                    console.log(result)
-                })
-                //.then(cookTime())
-                .catch(function () {
-                    console.log("No more recipies bye bye")
-                }); //delete client
-        };
+var r = new Restaurant;
+r.createRecipeA();
 
 
 
-/*
-        createRecetteA() {
-            var dispoRecette = true;
-            for (var k in this.recetteA) {
-                for (var item in this.stock) {
-                    //console.log(item);
-                    if (k === item) {
-                        if (this.stock[item] !== 0)
-                            console.log("consommation de " + k);
-                        else
-                            dispoRecette = false;
-                    }
-                }
-            }
-            if (dispoRecette)
-            {
-                for (var k in this.recetteA) {
-                    for (var item in this.stock){
-                        if(k === item)
-                            this.stock[item]--;
-                    }
-                }
-
-            }
-            else {
-                this.createRecetteB();
-                //delete client
-            }
-
-        };
-
-
-        createRecetteB() {
-            var dispoRecette = true;
-            for (var k in this.recetteB) {
-                for (var item in this.stock) {
-                    //console.log(item);
-                    if (k === item) {
-                        if (this.stock[item] !== 0)
-                            console.log("consommation de " + k);
-                        else
-                            dispoRecette = false;
-                    }
-                }
-            }
-            if (dispoRecette)
-            {
-                for (var k in this.recetteB) {
-                    for (var item in this.stock){
-                        if(k === item)
-                            this.stock[item]--;
-                    }
-                }
-
-            }
-            else {
-                console.log("il n y a plus de recettes disponibles")
-                //delete client
-            }
-
-        };*/
-
-};
-
-
-var r = new Restaurant();
-
-r.createRecipeB();
 
