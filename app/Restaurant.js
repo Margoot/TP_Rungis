@@ -5,15 +5,15 @@
 
 const Promise = require ('bluebird');
 
-const MIN_TO_SEC = 100;
-const HOUR_TO_SEC = 10000;
+const MIN=1;
+const HOUR_TO_MIN = 100;
 
 class Restaurant {
     constructor() {
-        this.openTime = Math.floor((Math.random() * (24 * HOUR_TO_SEC)) + (HOUR_TO_SEC));
-        this.closeTime = Math.floor((Math.random() * (24 * HOUR_TO_SEC)) + (HOUR_TO_SEC));
+        this.openTime = Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
+        this.closeTime = Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
         this.open = false;
-        this.cookTime = Math.floor((Math.random() * (50 * MIN_TO_SEC)) + (5 * MIN_TO_SEC));
+        this.cookTime = Math.floor((Math.random() * 50) + 5);
 
         this.stock = {
             "eggs": 20,
@@ -46,71 +46,77 @@ class Restaurant {
 
     }
 
-    createRecipeA() {
+createRecipeA() {
 
-            var prepare = new Promise((resolve, reject) => {
-                var numIng = 0; // instanciation du nbr d'ingrédient à 0
-                // vérification si les ingrédients sont dispo dans le stock
-                for (var i in this.recipeA) {
-                    for (var j in this.stock) {
-                        if (i === j) {
-                            if (stock[j] > 0) {
-                                numIng++; //si l'ingrédient est dispo dans le stock, on incrémente numIng
-                            }
-                        }
+    var prepare = new Promise((resolve, reject) => {
+        var numIng = 0;
+        for (var i in this.recipeA) {
+           for (var j in this.stock) {
+               if (i === j) {
+                   if (this.stock[j] > 0) {
+                       numIng++;
+                   }
+               }
 
-                    }
-                }
-                resolve(numIng===5); // resolve si le nombre d'ingrédients est de 5 (car la recette est composée de 5 ing)
-            });
-
-            //fonction pour décrémenter le nombre d'ingrédients présents dans le stock
-            var consumption = function () {
-                for (var i in this.recipeA) {
-                    for (var j in this.stock) {
-                        if (i === j)
-                            this.stock[j]--;
-                    }
-                }
-            };
-            //si c'est ok, on décrémente le nbr d'ingrédients, sinon on passe à la recette B
-            prepare
-                .then(consumption.bind(this))
-                //.then(cookTime())  // fonction non disponible pour le moment
-                .catch(this.createRecipeB);
-
+           }
         }
+    console.log(numIng);
+    resolve(numIng===5);
+});
 
-    createRecipeB() {
+var consumption = function () {
+   console.log("consumption");
+   for (var i in this.recipeA) {
+       for (var j in this.stock) {
+           if (i === j)
+               this.stock[j]--;
+        }
+    }
+    console.log(this.stock);
+};
 
-        var prepare = new Promise( (resolve, reject) => {
-            var numIng = 0;
-            for (var i in this.recipeB) {
-                for (var j in this.stock) {
-                    if (i === j) {
-                        if (stock[j] > 0) {
-                            numIng++;
-                        }
-                    }
+var cookTime = function (){
+    console.log(this.cookTime);
 
+
+}
+    prepare
+        .then(consumption.bind(this))
+        .then(cookTime.bind(this))
+        .catch(this.createRecipeB);
+
+}
+
+createRecipeB(){
+
+    console.log ( "recette B : ");
+    var prepare = new Promise( (resolve, reject) => {
+        var numIng = 0;
+        for (var i in this.recipeB) {
+           for (var j in this.stock) {
+               if (i === j) {
+                  if (this.stock[j] > 0) {
+                     numIng++;
+                   }
                 }
-            }
-            resolve(numIng===5);
-        });
 
+           }
+        }
+        console.log(numIng);
+        resolve(numIng===5);
+    });
 
-        var consumption = function () {
-            for (var i in this.recipeB) {
-                for (var j in this.stock) {
-                    if (i === j)
-                        this.stock[j]--;
-                }
-            }
-        };
-
+var consumption = function () {
+    for (var i in this.recipeB) {
+        for (var j in this.stock) {
+            if (i === j)
+              this.stock[j]--;
+        }
+    }
+};
         prepare
             .then(consumption.bind(this))
-            //.then(cookTime())  //fonction non défini pour le moment
+            //.then(cookTime())
             .catch(console.log("aucune recette n'est disponible, bye bye"));
             
 
