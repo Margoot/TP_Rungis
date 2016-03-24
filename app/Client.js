@@ -16,3 +16,20 @@ class Client {
 
     }
 }
+var goRestaurant = new Promise(function(resolve,reject) {
+    if (this.hunger == true && openRestaurant == true) {
+        resolve('+1 client')
+    }
+    else
+    {
+        reject('try an other one')
+    }
+});
+
+goRestaurant.then(function() {
+    //appel de la promise chooseRecipe si le client est dans le restaurant
+        chooseRecipe.on
+    }).catch(function(){
+    //appel de la promise chooseRestaurant si le client n'a pas dans le restaurant
+    chooseRestaurant.on
+});
