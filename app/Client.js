@@ -8,28 +8,36 @@ const HOUR_TO_SEC = 10000;
 
 
 class Client {
-    constructor(clientNumber, hunger, resistance) {
+    constructor() {
         this.clientNumber = 1;
         this.hunger = true;
-        this.resistance = Match.floor(Math.random() * (4000) + 1000);
+        //this.resistance = Math.floor((Math.random() * 4000) + 1000);
+        this.openRestaurant = true;
 
 
     }
+
+
+    goRestaurant() {
+        var goRestaurantPromise = new Promise(function (resolve, reject) {
+            if (this.hunger && this.openRestaurant) {
+                resolve('+1 client');
+            }
+            else {
+                reject('try an other one');
+            }
+        });
+
+        goRestaurantPromise
+            .then(result => (result) => {console.log(result)})
+            //appel de la promise chooseRecipe si le client est dans le restaurant chooseRecipe.on
+            .catch(err => (err) => {console.log(err)});
+                //appel de la promise chooseRestaurant si le client n'a pas dans le restaurant chooseRestaurant.on
+
+    }
+
 }
-var goRestaurant = new Promise(function(resolve,reject) {
-    if (this.hunger === true && openRestaurant === true) {
-        resolve('+1 client')
-    }
-    else
-    {
-        reject('try an other one')
-    }
-});
 
-goRestaurant.then(function() {
-    //appel de la promise chooseRecipe si le client est dans le restaurant
-        chooseRecipe.on
-    }).catch(function(){
-    //appel de la promise chooseRestaurant si le client n'a pas dans le restaurant
-    chooseRestaurant.on
-});
+var client1 = new Client();
+
+client1.goRestaurant();
