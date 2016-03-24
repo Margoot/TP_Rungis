@@ -17,7 +17,7 @@ class Client {
     }
 }
 var goRestaurant = new Promise(function(resolve,reject) {
-    if (this.hunger == true && openRestaurant == true) {
+    if (this.hunger === true && openRestaurant === true) {
         resolve('+1 client')
     }
     else
