@@ -3,13 +3,14 @@
  */
 'use strict';
 
+
 const Promise = require('bluebird');
 
 const HOUR_TO_MIN = 100;
 const MIN_TO_MILLISECONDE = 10000;
 
 
-class Restaurant {
+module.exports = class Restaurant {
   constructor() {
     this.openTime =
       Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
