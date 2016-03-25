@@ -1,6 +1,3 @@
-/**
- * Created by simonthome on 18/03/2016.
- */
 'use strict';
 
 const Promise = require('bluebird');
@@ -9,7 +6,7 @@ const HOUR_TO_MIN = 100;
 const MIN_TO_MILLISECONDE = 10000;
 
 
-class Restaurant {
+module.exports = class {
   constructor() {
     this.openTime =
       Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
@@ -233,8 +230,6 @@ class Restaurant {
         reject();
     });
   }
+
 }
-
-var r = new Restaurant();
-r.choice(3);
-
+return module.exports;

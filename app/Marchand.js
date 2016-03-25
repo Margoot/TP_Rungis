@@ -69,8 +69,4 @@ class Marchand {
 
 
 }
-
-var marche = new Marchand();
-marche.opening();
-//
-//marche.refueling();
+return module.exports;
