@@ -52,16 +52,16 @@ class Marchand {
     };
 
     refueling() {
-      var refuel = new Promise ((resolve, reject) => {
+        var refuel = new Promise ((resolve, reject) => {
 
-          console.log("Début du ravitaillement");
-          setTimeout(() => {console.log("fin du ravitaillement");
-              resolve(true)},10000);
-      });
+            console.log("Début du ravitaillement");
+            setTimeout(() => {console.log("fin du ravitaillement");
+                resolve(true)},10000);
+        });
 
         refuel
             .then((end) => {this.closing(end);
-                })
+            })
             .catch(err => console.log(`Error : ${err}`));
     };
 
