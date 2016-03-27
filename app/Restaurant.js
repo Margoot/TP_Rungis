@@ -47,7 +47,7 @@ module.exports = class extends Marchand {
       //}
     //console.log("l'heure de fermeture est : " + this.closeTime + "h");
 
-  
+
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
     this.stock = {
