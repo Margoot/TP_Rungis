@@ -15,7 +15,6 @@ module.exports =  class {
         this.closeTime = 14*HOUR_TO_MIN;
         this.refuelingTime = Math.floor((Math.random() * (HOUR_TO_MIN + 15)) + 15);
         //this.open = false;
-
         this.stock = [
             "eggs","pasta","bacon","cream","onions","salad","tomatoes","mozarella","chicken","parmesan","sushi","california",
             "maki","brochettes","miso soup","ramen","maki nutella","beef","onion","sauce","riz","bread","potatoes","cheese","ham",
@@ -26,17 +25,14 @@ module.exports =  class {
     opening () {
         var open = new Promise ((resolve,reject)=>{
             setTimeout(() => {console.log("le marché est ouvert");
-                resolve(this.open=true);
-                this.refueling();}, this.openTime*10);
-
+                resolve(true)}, 5000);
 
 
 
         });
 
         open
-            .then(() => {
-                this.closing(this.open);
+            .then(() => {this.refueling();
             })
             .catch(err => console.log(`Error : ${err}`));
 
@@ -47,8 +43,7 @@ module.exports =  class {
 
         if (open){
             var close = new Promise ((resolve,reject)=>{
-                setTimeout(() => {this.open =false;
-                    resolve()}, this.closeTime*10);
+                setTimeout(() => resolve(true), 5000);
 
             });
         }
@@ -62,21 +57,16 @@ module.exports =  class {
     };
 
     refueling() {
-        if (this.open){
         var refuel = new Promise ((resolve, reject) => {
 
             console.log("Début du ravitaillement");
-            setTimeout(() => {
-                resolve();
-            }, this.refuelingTime*10);
+            setTimeout(() => {console.log("fin du ravitaillement");
+                resolve(true)},10000);
         });
-        }
-        else {
-            reject();
-        }
 
         refuel
-            .then(() => {console.log("Fin du ravitaillement");})
+            .then((end) => {this.closing(end);
+            })
             .catch(err => console.log(`Error : ${err}`));
     };
 
@@ -84,7 +74,4 @@ module.exports =  class {
 
 
 }
-
 return module.exports;
-
-
