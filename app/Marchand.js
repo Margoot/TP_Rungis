@@ -6,6 +6,7 @@
 const Promise = require('bluebird');
 const winston = require('winston');
 
+
 const HOUR_TO_MIN = 100;
 
 module.exports =  class {
