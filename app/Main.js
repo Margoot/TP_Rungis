@@ -4,6 +4,8 @@
 const Marchand = require('./Marchand');
 const Restaurant = require('./Restaurant');
 const Client = require ('./Client');
+const EventEmitter = require('events').EventEmitter;
+const HOUR_TO_MIN = 100;
 
 
 var r = new Restaurant();
@@ -14,19 +16,12 @@ marche.opening();
  var client = new Client();
 client.choiceRestaurant();
 
-/*
- client1.chooseRestaurant();
- client1.goRestaurant();
- client1.chooseRecipe();
- */
 
-/*
- const EventEmitter = require('events').EventEmitter;
- const ev = new EventEmitter();
- const interv  = setInterval(() => ev.emit('hour', i++ % 24), 100);
- let i = 0;
- ev.on('hour', (hour) => console.log(`il est ${hour}`));
+var horloge = function () {
+  const ev = new EventEmitter();
+  const interv = setInterval(() => ev.emit('hour', i++ % 24 * HOUR_TO_MIN), 1000);
+  let i = 0;
+  ev.on('hour', (hour) => console.log(`il est ${hour}`));
 
- setTimeout(() => clearInterval(interv), 4800);
-
- */
+  setTimeout(() => clearInterval(interv), 490 * HOUR_TO_MIN);
+};

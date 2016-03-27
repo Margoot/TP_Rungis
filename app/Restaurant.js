@@ -11,16 +11,16 @@ module.exports = class extends Marchand {
   constructor() {
     super();
     this.openTime =
-      Math.floor((Math.random() * 24) + 1); //en heure
+      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.closeTime =
-      Math.floor((Math.random() * 24) + 1); //en heure
+      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.open = false;
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
   }
   //======= OPENING =========
 
-  opening(){
+  opening(ev){
     if  (ev >= this.openTime && ev <= this.closeTime){
       //console.log("le restaurant est ouvert");
       this.open = true;
