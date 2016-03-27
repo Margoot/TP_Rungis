@@ -1,5 +1,7 @@
 'use strict';
 
+//client de Margot
+
 const Promise = require('BlueBird');
 const chalk = require('chalk');
 const Restaurant = require('./Restaurant');
