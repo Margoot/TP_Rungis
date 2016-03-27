@@ -13,21 +13,24 @@ class Marchand {
         this.openTime = 5*HOUR_TO_MIN;
         this.closeTime = 14*HOUR_TO_MIN;
         this.refuelingTime = Math.floor((Math.random() * (HOUR_TO_MIN + 15)) + 15);
-        //this.open = false;
+        this.open = false;
         this.stock = ["Bacon","Pasta","Creme","Eggs","Onions","Salad","Tomatoes","Mozarella","Chicken","Parmesan"];
     }
 
     opening () {
         var open = new Promise ((resolve,reject)=>{
             setTimeout(() => {console.log("le marché est ouvert");
-                resolve(true)}, 5000);
+                resolve(this.open=true);
+                this.refueling();}, this.openTime*10);
+
 
 
 
         });
 
         open
-            .then(() => {this.refueling();
+            .then(() => {
+                this.closing(this.open);
             })
             .catch(err => console.log(`Error : ${err}`));
 
@@ -38,7 +41,8 @@ class Marchand {
 
         if (open){
             var close = new Promise ((resolve,reject)=>{
-                setTimeout(() => resolve(true), 5000);
+                setTimeout(() => {this.open =false;
+                    resolve()}, this.closeTime*10);
 
             });
         }
@@ -52,16 +56,21 @@ class Marchand {
     };
 
     refueling() {
+        if (this.open){
         var refuel = new Promise ((resolve, reject) => {
 
             console.log("Début du ravitaillement");
-            setTimeout(() => {console.log("fin du ravitaillement");
-                resolve(true)},10000);
+            setTimeout(() => {
+                resolve();
+            }, this.refuelingTime*10);
         });
+        }
+        else {
+            reject();
+        }
 
         refuel
-            .then((end) => {this.closing(end);
-            })
+            .then(() => {console.log("Fin du ravitaillement");})
             .catch(err => console.log(`Error : ${err}`));
     };
 
@@ -69,4 +78,14 @@ class Marchand {
 
 
 }
+
 return module.exports;
+
+
+var marche = new Marchand();
+marche.opening();
+
+//marche.closing()
+//
+//marche.refueling();
+
