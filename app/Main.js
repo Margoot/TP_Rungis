@@ -17,7 +17,7 @@ var horloge = function () {
 };
 
 var r = new Restaurant();
-r.opening(this.horloge);
+//r.opening(this.horloge);
 
 var marche = new Marchand();
 marche.opening();

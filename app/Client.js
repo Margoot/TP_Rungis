@@ -1,7 +1,16 @@
 'use strict ';
 
+<<<<<<< HEAD
 const Promise = require ('BlueBird');
 const chalk =  require ('chalk');
+=======
+//client de Margot
+
+const Promise = require('BlueBird');
+const chalk = require('chalk');
+const Restaurant = require('./Restaurant');
+const Marchand = require('./Marchand');
+>>>>>>> Bébou-le-rourou
 
 const Restaurant = require ('./Restaurant');
 
