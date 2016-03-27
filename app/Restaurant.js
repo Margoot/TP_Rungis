@@ -1,6 +1,5 @@
 'use strict';
 
-
 const Promise = require('bluebird');
 
 const HOUR_TO_MIN = 100;
@@ -8,13 +7,14 @@ const MIN_TO_MILLISECONDE = 10000;
 
 const Marchand = require ('./Marchand');
 
+
 module.exports = class extends Marchand {
   constructor() {
     super();
     this.openTime =
-      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
+        Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.closeTime =
-      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
+        Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.open = false;
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
@@ -31,23 +31,23 @@ module.exports = class extends Marchand {
 
 
 
-    //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
-    //return new Promise (() => (resolve, reject){
-      // appeler fonction horloge
-      //console.log("il est : " + hourHorloge + "votre restaurant est " + this.open );
-      //if (this.open){
-        
-      //}
-    //console.log("l'heure de fermeture est : " + this.closeTime + "h");
+  //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
+  //return new Promise (() => (resolve, reject){
+  // appeler fonction horloge
+  //console.log("il est : " + hourHorloge + "votre restaurant est " + this.open );
+  //if (this.open){
+
+  //}
+  //console.log("l'heure de fermeture est : " + this.closeTime + "h");
+
 
   //====== REFUELING ========
-/*
-  goRefueling(){
+  /*
+   goRefueling(){
 
-  }
+   }
 
-*/
-
+   */
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
     this.stock = {
