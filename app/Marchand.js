@@ -22,32 +22,38 @@ module.exports =  class {
         ];
     }
         opening () {
-            var open = new Promise ((resolve,reject)=>{
-                setTimeout(() => {console.log("le marché est ouvert");
-                resolve(this.open=true);
-                this.refueling();}, this.openTime*10);
+            var open = new Promise((resolve, reject)=> {
+                setTimeout(() => {
+                    console.log("le marché est ouvert");
+                    resolve(this.open = true);
+                    this.refueling();
+                }, this.openTime * 10);
 
 
-
-
-        });
+            });
             open
                 .then(() => {
-                        this.closing(this.open);
+                    this.closing(this.open);
                 })
                 .catch(err => console.log(`Error : ${err}`));
+        }
 
+        closing (open) {
 
-    if (open){
-        var close = new Promise ((resolve,reject)=>{
-            setTimeout(() => {this.open =false;
+            if (open){
+                var close = new Promise ((resolve,reject)=>{
+                setTimeout(() => {this.open =false;
                 resolve()}, this.closeTime*10);
 
         });
     }
+            close
+                .then(() => {console.log("le marché est fermé")})
+                .catch(err => console.log(`Error : ${err}`));
 };
 
-refueling() {
+
+    refueling() {
     if (this.open){
         var refuel = new Promise ((resolve, reject) => {
 
@@ -66,4 +72,4 @@ refueling() {
         .catch(err => console.log(`Error : ${err}`));
     };
 
-}
+};
