@@ -7,8 +7,13 @@ const HOUR_TO_MIN = 100;
 const MIN_TO_MILLISECONDE = 10000;
 
 const Marchand = require ('./Marchand');
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> Bébou-le-rourou
 module.exports = class extends Marchand {
   constructor() {
     super();
@@ -22,6 +27,7 @@ module.exports = class extends Marchand {
   }
   //======= OPENING =========
 
+<<<<<<< HEAD
   opening(ev){
     if  (ev >= this.openTime && ev <= this.closeTime){
       //console.log("le restaurant est ouvert");
@@ -58,6 +64,36 @@ module.exports = class extends Marchand {
   }
 
 
+=======
+  //======= OPENING =========
+
+  opening(horlogeTime){
+    if  (horlogeTime >= this.openTime && horlogeTime <= this.closeTime){
+      this.open = true;
+      //console.log("le restaurant est ouvert");
+    }
+    else
+      this.open = false;
+  };
+
+    //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
+    //return new Promise (() => (resolve, reject){
+      // appeler fonction horloge
+      //console.log("il est : " + hourHorloge + "votre restaurant est " + this.open );
+      //if (this.open){
+        
+      //}
+    //console.log("l'heure de fermeture est : " + this.closeTime + "h");
+
+
+  //====== REFUELING ========
+/*
+  goRefueling(){
+
+  }
+
+*/
+>>>>>>> Bébou-le-rourou
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
     this.stock = {
