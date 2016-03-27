@@ -1,20 +1,20 @@
-/**
- * Created by simonthome on 18/03/2016.
- */
+
 'use strict';
 
-//const Marchand = require ('./Marchand');
+const Marchand = require('./Marchand');
 const Restaurant = require('./Restaurant');
-//const Client = require ('./Client');
+const Client = require ('./Client');
+
 
 var r = new Restaurant();
-r.choice(3);
+r.opening();
+var marche = new Marchand();
+marche.opening();
 
-//var marche = new Marchand();
-//marche.opening();
+ var client = new Client();
+client.choiceRestaurant();
+
 /*
- var client1 = new Client();
-
  client1.chooseRestaurant();
  client1.goRestaurant();
  client1.chooseRecipe();
