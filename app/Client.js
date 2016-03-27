@@ -1,88 +1,118 @@
-'use strict ';
+'use strict';
 
-<<<<<<< HEAD
-const Promise = require ('BlueBird');
-const chalk =  require ('chalk');
-=======
 //client de Margot
 
 const Promise = require('BlueBird');
 const chalk = require('chalk');
 const Restaurant = require('./Restaurant');
 const Marchand = require('./Marchand');
->>>>>>> Bébou-le-rourou
 
-const Restaurant = require ('./Restaurant');
-
-var MIN = 1;
 var HOUR_TO_MIN = 100;
 var NB_RESTAURANT = 3;
 var NB_RECIPE = 2;
 
 
-class Client {
+module.exports = class extends Restaurant {
     constructor() {
-        this.clientNumber = 1;
-        this.hunger = true;
-        this.resistance = Math.floor((Math.random() * (40*MIN)) + (10*MIN));
-        this.openRestaurant = true;
+        super();
+        this.clientNumber = 1
+        //this.hunger = true;
+        this.resistance = Math.floor((Math.random() * 40) + 10);
+        //this.openRestaurant = true;
     }
 
-    chooseRestaurant(restau, meal){
-        var restaurant = Math.floor((Math.random() * (NB_RESTAURANT)) + 0);
-        switch (restaurant){
-            case 0:
-                restau = restaurantA;
-                chooseRecipe();
-                console.log("You are in the restaurant : " + $`restau` + " and the recipe : " + $`meal`);
-                break;
-            case 1:
-                restau = restaurantB;
-                chooseRecipe();
-                console.log("You are in the restaurant : " + $`restau` + " and the recipe : " + $`meal`);
-                break;
-            case 2:
-                restau = restaurantC;
-                chooseRecipe();
-                console.log("You are in the restaurant : " + $`restau` + " and the recipe : " + $`meal`);
+    choiceRestaurant() {
+        this.restauChoice = Math.floor((Math.random() * NB_RESTAURANT) + 0);
+        switch (this.restauChoice) {
+            case 0 :
+                //this.opening(this.ev);
+                //if (this.open) {
+                //console.log("le restau est ouvert");
+                this.restaurantItalian();
+                console.log("Bienvenue dans le restaurant Italien ! ");
+                this.chooseRecipe();
 
                 break;
-            default:
-                console.log("You didn't find any restaurant, sorry ! ")
-
+            case 1 :
+                //if (this.open)
+                this.restaurantJap();
+                console.log("Bienvenue dans le restaurant Japonnais ! ");
+                this.chooseRecipe();
+                break;
+            case 2 :
+                //if (this.open)
+                this.restaurantFrench();
+                console.log("Bienvenue dans le restaurant Français ! ");
+                this.chooseRecipe();
+                break;
+            default :
+                console.log(`Error : ${err}`);
         }
+
     }
 
 
-    chooseRecipe(meal){
+    chooseRecipe() {
         var recipe = Math.floor((Math.random() * (NB_RECIPE)) + 0);
-        if (recipe === 0){
-            meal = recipeA;
+        switch (recipe) {
+            case 0 :
+                console.log("Nous allons vérifier que votre recette est réalisable");
+                this.createRecipe1()
+                    .then(() => {
+                        this.useIngredients(this.recipe1);
+                        this.cook();
+                    })
+                    .catch(() => {
+                        this.createRecipe2()
+                            .then(() => {
+                                this.useIngredients(this.recipe2);
+                                this.cook();
+                            })
+                            .catch(
+                                () => console.log("aucune recette n'est disponible, bye bye"));
+                    });
+                break;
+            case 1 :
+                console.log("Nous allons vérifier que votre recette est réalisable");
+                this.createRecipe2()
+                    .then(() => {
+                        this.useIngredients(this.recipe2);
+                        this.cook();
+                    })
+                    .catch(() => {
+                        this.createRecipe1()
+                            .then(() => {
+                                this.useIngredients(this.recipe1);
+                                this.cook();
+                            })
+                            .catch(
+                                () => console.log("aucune recette n'est disponible, bye bye"));
+                    });
+                break;
         }
-        else {
-            meal = recipeB;
-        }
+
     }
 
+    /*
 
+     goRestaurant() {
+     var goRestaurantPromise = new Promise(function (resolve, reject) {
+     if (this.hunger && this.openRestaurant) {
+     resolve('+1 client');
+     }
+     else {
+     reject('try an other one');
+     }
+     });
 
-    goRestaurant() {
-        var goRestaurantPromise = new Promise(function (resolve, reject) {
-            if (this.hunger && this.openRestaurant) {
-                resolve('+1 client');
-            }
-            else {
-                reject('try an other one');
-            }
-        });
+     goRestaurantPromise
+     .then(result => (result) => {console.log(result)})
+     //appel de la promise chooseRecipe si le client est dans le restaurant chooseRecipe.on
+     .catch(err => (err) => {console.log(err)})
+     //appel de la promise chooseRestaurant si le client n'a pas dans le restaurant chooseRestaurant.on
 
-        goRestaurantPromise
-            .then(result => (result) => {console.log(result)})
-        //appel de la promise chooseRecipe si le client est dans le restaurant chooseRecipe.on
-            .catch(err => (err) => {console.log(err)})
-        //appel de la promise chooseRestaurant si le client n'a pas dans le restaurant chooseRestaurant.on
-
-    }
+     }
+     */
 }
-
+return module.exports;
 
