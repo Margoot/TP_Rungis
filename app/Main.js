@@ -16,13 +16,25 @@ var horloge = function () {
   setTimeout(() => clearInterval(interv), 490 * HOUR_TO_MIN);
 };
 
+var opening = function (horlogeTime){
+  while  (horlogeTime >= this.getOpenTime() && horlogeTime <= this.getCloseTime()){
+    this.open = true;
+    console.log("le restaurant est ouvert");
+  }
+
+};
+
+//horloge();
 var r = new Restaurant();
-//r.opening(this.horloge);
+var c = new Client();
+opening(this.horloge);
+if (this.open) {
+  c.choiceRestaurant();
+}
 
-var marche = new Marchand();
-marche.opening();
+//var marche = new Marchand();
+//marche.opening();
 
- var client = new Client();
-client.choiceRestaurant();
+
 
 

@@ -19,17 +19,17 @@ module.exports = class extends Marchand {
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
   }
+  getOpenTime(){
+    return this.openTime;
+  }
+
+  getCloseTime(){
+    return this.closeTime;
+  }
 
   //======= OPENING =========
 
-  opening(horlogeTime){
-    if  (horlogeTime >= this.openTime && horlogeTime <= this.closeTime){
-      this.open = true;
-      //console.log("le restaurant est ouvert");
-    }
-    else
-      this.open = false;
-  };
+
 
     //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
     //return new Promise (() => (resolve, reject){
