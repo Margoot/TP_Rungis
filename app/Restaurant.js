@@ -6,38 +6,57 @@ const Promise = require('bluebird');
 const HOUR_TO_MIN = 100;
 const MIN_TO_MILLISECONDE = 10000;
 
+const Marchand = require ('./Marchand');
 
 
-module.exports = class Restaurant {
-=======
-module.exports = class {
-
+module.exports = class extends Marchand {
   constructor() {
+    super();
     this.openTime =
-      Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
+      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.closeTime =
-      Math.floor((Math.random() * (24 * HOUR_TO_MIN)) + (HOUR_TO_MIN));
+      Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
     this.open = false;
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
   }
+  //======= OPENING =========
 
-  //======= CLIENT CHOICE (SERA MIS DANS LA CLASSE CLIENT)======
-  choice(restauChoice) {
-    switch (restauChoice) {
-      case 1 :
-        this.restaurantItalian();
-        break;
-      case 2 :
-        this.restaurantJap();
-        break;
-      case 3 :
-        this.restaurantFrench();
-        break;
-      default :
-        console.log("mauvais choix");
+  opening(ev){
+    if  (ev >= this.openTime && ev <= this.closeTime){
+      //console.log("le restaurant est ouvert");
+      this.open = true;
     }
+    else
+      this.open = false;
+
+
+    //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
+    return new Promise (() => (resolve, reject){
+      // appeler fonction horloge
+      //console.log("il est : " + hourHorloge + "votre restaurant est " + this.open );
+      if (this.open){
+        
+      }
+
+
+
+
+    });
+
+
+
+
+
+    console.log("l'heure de fermeture est : " + this.closeTime + "h");
   }
+
+  //====== REFUELING ========
+
+  goRefueling(){
+
+  }
+
 
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
@@ -45,7 +64,7 @@ module.exports = class {
       "eggs": 20,
       "pasta": 20,
       "bacon": 20,
-      "creme": 20,
+      "cream": 20,
       "onions": 20,
       "salad": 20,
       "tomatoes": 20,
@@ -58,7 +77,7 @@ module.exports = class {
       "eggs": 1,
       "pasta": 1,
       "bacon": 1,
-      "creme": 1,
+      "cream": 1,
       "onions": 1
     };
 
@@ -70,20 +89,6 @@ module.exports = class {
       "parmesan": 1
     };
 
-    this.createRecipe1()
-      .then(() => {
-        this.useIngredients(this.recipe1);
-        this.cook();
-      })
-      .catch(() => {
-        this.createRecipe2()
-          .then(() => {
-            this.useIngredients(this.recipe2);
-            this.cook();
-          })
-          .catch(() => console.log("aucune recette n'est disponible, bye bye"));
-      });
-
   }
 
   restaurantJap() {
@@ -93,7 +98,7 @@ module.exports = class {
       "california": 30,
       "maki": 30,
       "brochettes": 30,
-      "soupe miso": 30,
+      "miso soup": 30,
       "ramen": 20,
       "maki nutella": 10
 
@@ -112,21 +117,6 @@ module.exports = class {
       "maki nutella": 1
     };
 
-    this.createRecipe1()
-      .then(() => {
-        this.useIngredients(this.recipe1);
-        this.cook();
-      })
-      .catch(() => {
-        this.createRecipe2()
-          .then(() => {
-            this.useIngredients(this.recipe2);
-            this.cook();
-          })
-          .catch(() => console.log("aucune recette n'est disponible, bye bye"));
-      });
-
-
   }
 
   restaurantFrench() {
@@ -137,8 +127,8 @@ module.exports = class {
       "sauce": 30,
       "riz": 40,
       "bread": 50,
-      "pommes de terre": 30,
-      "fromage": 20,
+      "potatoes": 30,
+      "cheese": 20,
       "ham": 20,
       "carrot": 30
     };
@@ -152,31 +142,20 @@ module.exports = class {
     };
 
     this.recipe2 = {
-      "pommes de terre": 1,
-      "fromage": 1,
+      "potatoes": 1,
+      "cheese": 1,
       "ham": 1,
       "carrot": 1
     };
 
-    this.createRecipe1()
-      .then(() => {
-        this.useIngredients(this.recipe1);
-        this.cook();
-      })
-      .catch(() => {
-        this.createRecipe2()
-          .then(() => {
-            this.useIngredients(this.recipe2);
-            this.cook();
-          })
-          .catch(() => console.log("aucune recette n'est disponible, bye bye"));
-      });
+
   }
 
 
   // ==========RECIPE CREATION=========
+
   createRecipe1() {
-    console.log("recette A ");
+    console.log("recette 1 ");
     return new Promise((resolve, reject) => {
       var numIng = 0;
       for (var i in this.recipe1) {
@@ -216,7 +195,7 @@ module.exports = class {
 
   createRecipe2() {
 
-    console.log("recette B");
+    console.log("recette 2");
     return new Promise((resolve, reject) => {
       var numIng = 0;
       for (var i in this.recipe2) {
@@ -237,4 +216,6 @@ module.exports = class {
   }
 
 }
+
+
 return module.exports;
