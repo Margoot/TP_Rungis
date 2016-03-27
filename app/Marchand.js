@@ -15,6 +15,7 @@ module.exports =  class {
         this.closeTime = 14*HOUR_TO_MIN;
         this.refuelingTime = Math.floor((Math.random() * (HOUR_TO_MIN + 15)) + 15);
         //this.open = false;
+
         this.stock = [
             "eggs","pasta","bacon","cream","onions","salad","tomatoes","mozarella","chicken","parmesan","sushi","california",
             "maki","brochettes","miso soup","ramen","maki nutella","beef","onion","sauce","riz","bread","potatoes","cheese","ham",

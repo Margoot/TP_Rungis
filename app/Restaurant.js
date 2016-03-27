@@ -20,13 +20,6 @@ module.exports = class extends Marchand {
 
   }
 
-
-  //====== REFUELING ========
-
- // goRefueling(){}
-
-
-
   //======= OPENING =========
 
   opening(horlogeTime){
@@ -47,6 +40,13 @@ module.exports = class extends Marchand {
       //}
     //console.log("l'heure de fermeture est : " + this.closeTime + "h");
 
+  //====== REFUELING ========
+/*
+  goRefueling(){
+
+  }
+
+*/
 
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
