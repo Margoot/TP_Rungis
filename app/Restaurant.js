@@ -18,6 +18,7 @@ module.exports = class extends Marchand {
     this.open = false;
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
+
   }
   getOpenTime(){
     return this.openTime;
@@ -42,17 +43,58 @@ module.exports = class extends Marchand {
 
 
   //====== REFUELING ========
-/*
+
   goRefueling(){
+    var emptyStock=0;
+    this.restaurantFrench();
+    for (var i in this.stock){
+      if (this.stock[i]===0){
+        emptyStock++;
+      }
+    }
+    if (emptyStock >= 2){
+      this.refueling();
+      for (var i in this.stock){
+        this.stock[i] = 20;
+      }
+      console.log(this.stock);
+    }
+
+    this.restaurantItalian();
+    for (var i in this.stock){
+      if (this.stock[i]===0){
+        emptyStock++;
+      }
+    }
+    if (emptyStock >= 2){
+      this.refueling();
+      for (var i in this.stock){
+        this.stock[i] = 20;
+      }
+      console.log(this.stock);
+    }
+
+    this.restaurantJap();
+    for (var i in this.stock){
+      if (this.stock[i]===0){
+        emptyStock++;
+      }
+    }
+    if (emptyStock >= 2){
+      this.refueling();
+      for (var i in this.stock){
+        this.stock[i] = 20;
+      }
+      //console.log(this.stock);
+    }
 
   }
 
-*/
 //======== RESTAURANTS INSTANCIATION  =======
   restaurantItalian() {
     this.stock = {
-      "eggs": 20,
-      "pasta": 20,
+      "eggs": 0,
+      "pasta": 0,
       "bacon": 20,
       "cream": 20,
       "onions": 20,
@@ -84,9 +126,9 @@ module.exports = class extends Marchand {
   restaurantJap() {
 
     this.stock = {
-      "sushi": 30,
+      "sushi": 20,
       "california": 30,
-      "maki": 30,
+      "maki": 20,
       "brochettes": 30,
       "miso soup": 30,
       "ramen": 20,
@@ -180,7 +222,7 @@ module.exports = class extends Marchand {
   cook() { //prend en param un client
     setTimeout(()=> {
       console.log("Le plat est prêt!!");
-    }, this.cookTime * MIN_TO_MILLISECONDE);
+    }, this.cookTime ); // a multiplier pour mettre en milliseconde
   }
 
   createRecipe2() {
