@@ -11,35 +11,32 @@ const Marchand = require ('./Marchand');
 module.exports = class extends Marchand {
   constructor() {
     super();
-    this.openTime =
+    this.openTimeRes =
       Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
-    this.closeTime =
+    this.closeTimeRes =
       Math.floor((Math.random() * 24*HOUR_TO_MIN) + HOUR_TO_MIN); //en heure
-    this.open = false;
+    this.openRes = false;
     this.cookTime = Math.floor((Math.random() * 50) + 5);
 
 
   }
-  getOpenTime(){
-    return this.openTime;
+  getOpenTimeRes(){
+    return this.openTimeRes;
   }
 
-  getCloseTime(){
-    return this.closeTime;
+  getCloseTimeRes(){
+    return this.closeTimeRes;
   }
 
-  //======= OPENING =========
+  openingRes() {
+    this.openRes=true;
+    console.log("Le restaurant est ouvert");
+  };
 
-
-
-    //console.log("l'heure d'ouverture est : "+ this.openTime +"h");
-    //return new Promise (() => (resolve, reject){
-      // appeler fonction horloge
-      //console.log("il est : " + hourHorloge + "votre restaurant est " + this.open );
-      //if (this.open){
-        
-      //}
-    //console.log("l'heure de fermeture est : " + this.closeTime + "h");
+  closingRes(){
+    this.openRes=false;
+    console.log("Le restaurant est fermé");
+  };
 
 
   //====== REFUELING ========

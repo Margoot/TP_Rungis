@@ -11,10 +11,10 @@ const HOUR_TO_MIN = 100;
 
 module.exports = class {
   constructor() {
-    this.openTime = 5 * HOUR_TO_MIN;
-    this.closeTime = 14 * HOUR_TO_MIN;
+    this.openTimeRungis = 5 * HOUR_TO_MIN;
+    this.closeTimeRungis = 14 * HOUR_TO_MIN;
     this.refuelingTime = Math.floor((Math.random() * (HOUR_TO_MIN + 15)) + 15);
-    this.open = false;
+    this.openRungis = false;
     this.stock = [
       "eggs", "pasta", "bacon", "cream", "onions", "salad", "tomatoes",
       "mozarella", "chicken", "parmesan", "sushi", "california",
@@ -23,47 +23,44 @@ module.exports = class {
       "carrot"
     ];
   }
-
-  opening() {
-    var open = new Promise((resolve, reject)=> {
-      setTimeout(() => {
-        console.log("le marché est ouvert");
-        resolve(this.open = true);
-        //this.refueling(); //juste pour tester refueling 
-      }, this.openTime * 10);
-
-
-    });
-    open
-      .then(() => {
-        this.closing(this.open);
-      })
-      .catch(err => console.log(`Error : ${err}`));
+  getOpenTimeRungis(){
+    return this.openTimeRungis;
   }
 
-  closing(open) {
+  getCloseTimeRungis(){
+    return this.closeTimeRungis;
+  }
 
-    if (open) {
-      var close = new Promise((resolve, reject)=> {
-        setTimeout(() => {
-          this.open = false;
-          resolve()
-        }, this.closeTime * 10);
+  getOpenRungis(){
+    return this.openRungis;
+  }
 
-      });
-    }
-    close
+  openingRungis() {
+   // var open = new Promise((resolve, reject)=> {
+        console.log("le marché est ouvert");
+        this.openRungis = true;
+        //this.refueling(); //juste pour tester refueling
+    //});
+    /*open
       .then(() => {
-        console.log("le marché est fermé")
+        this.closingRungis(this.openRungis);
       })
-      .catch(err => console.log(`Error : ${err}`));
+      .catch(err => console.log(`Error : ${err}`));*/
+  }
+
+  closingRungis() {
+
+
+          this.openRungis = false;
+
+        console.log("le marché est fermé")
+
   };
 
 
   refueling() {
-    if (this.open) {
+    if (this.openRungis) {
       var refuel = new Promise((resolve, reject) => {
-
         console.log("Début du ravitaillement");
         setTimeout(() => {
           resolve();

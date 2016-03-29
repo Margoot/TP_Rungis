@@ -25,25 +25,26 @@ module.exports = class extends Restaurant {
     this.restauChoice = Math.floor((Math.random() * NB_RESTAURANT) + 0);
     switch (this.restauChoice) {
       case 0 :
-        //this.opening(this.ev);
-        //if (this.open) {
-        //console.log("le restau est ouvert");
         this.restaurantItalian();
-        console.log("Bienvenue dans le restaurant Italien ! ");
-        this.chooseRecipe();
+        if (this.openRes){
+          console.log("Bienvenue dans le restaurant Italien ! ");
+          this.chooseRecipe();
+        }
 
         break;
       case 1 :
-        //if (this.open)
         this.restaurantJap();
-        console.log("Bienvenue dans le restaurant Japonnais ! ");
-        this.chooseRecipe();
+        if (this.openRes){
+          console.log("Bienvenue dans le restaurant Japonnais ! ");
+          this.chooseRecipe();
+        }
         break;
       case 2 :
-        //if (this.open)
         this.restaurantFrench();
-        console.log("Bienvenue dans le restaurant Français ! ");
-        this.chooseRecipe();
+        if (this.openRes){
+          console.log("Bienvenue dans le restaurant Français ! ");
+          this.chooseRecipe();
+        }
         break;
       default :
         console.log(`Error : ${err}`);

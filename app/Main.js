@@ -7,34 +7,64 @@ const EventEmitter = require('events').EventEmitter;
 
 const HOUR_TO_MIN = 100;
 
-var horloge = function () {
-  const ev = new EventEmitter();
-  const interv = setInterval(() => ev.emit('hour', i++ % 24 * HOUR_TO_MIN),
-    1000);
-  let i = 0;
-  ev.on('hour', (hour) => console.log(`il est ${hour}`));
-  setTimeout(() => clearInterval(interv), 490 * HOUR_TO_MIN);
-  return interv;
-};
-
-var opening = function (horlogeTime) {
-  while (horlogeTime >= this.getOpenTime() &&
-  horlogeTime <= this.getCloseTime()) {
-    this.open = true;
-    console.log("le restaurant est ouvert");
-  }
-};
-
-//horloge();
-var marche = new Marchand();
-marche.opening();
+var m = new Marchand();
 var r = new Restaurant();
-r.goRefueling();
-//var c = new Client();
-//opening(this.horloge);
-//if (this.open) {
- // c.choiceRestaurant();
-//}
+var c = new Client();
+
+const ev = new EventEmitter();
+const interv = setInterval(() => ev.emit('hour', i++ % (24*HOUR_TO_MIN)),
+  10);
+let i = 0;
+ev.on('hour', (hour) => console.log(`il est ${hour}`));
+console.log(r.getOpenTimeRes());
+console.log(r.getCloseTimeRes());
+
+
+
+var openRungis = new Promise ((resolve,reject) => {
+  ev.on('hour', (hour) => {
+    if (hour === m.getOpenTimeRungis()){
+      m.openingRungis();
+      resolve();}
+  });
+});
+
+openRungis.then(() => {
+  ev.on('hour', (hour) => {
+    if (hour === m.getCloseTimeRungis())
+      m.closingRungis();
+  });
+})
+
+if (m.getOpenRungis()){
+  r.goRefueling();
+}
+
+
+var openRes = new Promise ((resolve,reject) => {
+  ev.on('hour', (hour) => {
+    if (hour === r.getOpenTimeRes()){
+      r.openingRes();
+      resolve();}
+  });
+});
+
+openRes.then(() => {
+  ev.on('hour', (hour) => {
+    if (hour === r.getCloseTimeRes())
+      r.closingRes();
+  });
+})
+
+
+setTimeout(() => clearInterval(interv), (4800*HOUR_TO_MIN));
+
+
+
+//m.opening();
+//r.goRefueling();
+//c.choiceRestaurant();
+
 
 
 
