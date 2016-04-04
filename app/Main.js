@@ -1,72 +1,177 @@
 'use strict';
 
-const Marchand = require('./Marchand');
-const Restaurant = require('./Restaurant');
-const Client = require('./Client');
-const EventEmitter = require('events').EventEmitter;
+var marchand = require('./Marchand.js');
+var restaurant = require('./Restaurant.js');
+var client = require('./Client.js');
 
-const HOUR_TO_MIN = 100;
+var Promise = require('bluebird');
 
-var m = new Marchand();
-var r = new Restaurant();
-var c = new Client();
+const OPEN_RUNGIS = 5;
+const CLOSE_RUNGIS = 14;
+const WAIT_TO_ENTER = 10;
+const MS_FOR_MIN = 1;
 
-const ev = new EventEmitter();
-const interv = setInterval(() => ev.emit('hour', i++ % (24*HOUR_TO_MIN)),
-  10);
-let i = 0;
-ev.on('hour', (hour) => console.log(`il est ${hour}`));
-console.log(r.getOpenTimeRes());
-console.log(r.getCloseTimeRes());
+var r = new restaurant.Restaurant();
+var m = new marchand.Marchand();
 
 
+//  ======= HORLOGE =======
 
-var openRungis = new Promise ((resolve,reject) => {
-  ev.on('hour', (hour) => {
-    if (hour === m.getOpenTimeRungis()){
-      m.openingRungis();
-      resolve();}
-  });
-});
+var hour = 0;
+var minute = 0;
+var day = 1;
+var nameClient = Math.floor((Math.random() * 1000000));
+console.log("=========== DAY " + day + " ============");
+var timer = setInterval(clock, MS_FOR_MIN);
 
-openRungis.then(() => {
-  ev.on('hour', (hour) => {
-    if (hour === m.getCloseTimeRungis())
-      m.closingRungis();
-  });
-})
+function clock() {
 
-if (m.getOpenRungis()){
-  r.goRefueling();
+  minute += 1;
+
+  if (minute > 59) {
+    minute = 0;
+    hour += 1;
+    openRungis();
+    openRes();
+  }
+
+  if (hour >= 0 && hour <= 11 || hour >= 14 && hour <= 18) {
+    if (minute % 20 == 0)
+      createClient();
+  }
+
+  if (hour > 11 && hour < 14 || hour > 18 && hour <= 23) {
+    if (minute % 8 == 0)
+      createClient();
+  }
+
+  if (hour == 24) {
+    hour = 0;
+    day += 1;
+    console.log("=========== DAY " + day + " ===========");
+    if (day == 4) {
+      console.log("FIN DE LA SIMULATION");
+      clearInterval(this);
+      r.scoreIt();
+      r.scoreJap();
+      r.scoreFr();
+    }
+  }
+  console.log(hour + ":" + minute);
+}
+
+//=======OPENING RUNGIS=========
+
+function openRungis() {
+  if (hour === OPEN_RUNGIS)
+    m.openingRungis();
+  else if (hour === CLOSE_RUNGIS)
+    m.closingRungis();
 }
 
 
-var openRes = new Promise ((resolve,reject) => {
-  ev.on('hour', (hour) => {
-    if (hour === r.getOpenTimeRes()){
-      r.openingRes();
-      resolve();}
-  });
-});
+//=======OPENING RESTAURANT=========
 
-openRes.then(() => {
-  ev.on('hour', (hour) => {
-    if (hour === r.getCloseTimeRes())
-      r.closingRes();
-  });
-})
+function openRes() {
+  if (hour == r.getOpenTimeResItalian())
+    r.openingResItalian();
+  else if (r.getOpenTimeResItalian()) {
+    if (hour == r.getCloseTimeResItalian())
+      r.closingResItalian();
+  }
+  if (hour == r.getOpenTimeResJap())
+    r.openingResJap();
+  else if (r.getOpenTimeResJap()) {
+    if (hour == r.getCloseTimeResJap())
+      r.closingResJap();
+  }
+  if (hour == r.getOpenTimeResFrench())
+    r.openingResFrench();
+  else if (r.getOpenTimeResFrench()) {
+    if (hour == r.getCloseTimeResFrench())
+      r.closingResFrench();
+  }
+}
+
+//=======CREATE CLIENTS=========
+
+function createClient() {
+  nameClient = new client.Client();
+  console.log("un nouveau client à faim");
+  nameClient.choiceRestaurant(r);
+  if (nameClient.getRestauItalianChoice() == true) {
+    if (r.getOpenResItalian()) {
+      console.log("le restaurant Italien est ouvert");
+      nameClient.choiceRecipe(r);
+      r.needRefuelingItalian();
+      r.scoreIt();
+    }
+    else {
+      console.log("le restaurant italien est fermé, attendez 10 min ")
+      setTimeout(() => {
+        nameClient.choiceRestaurant(r);
+        if (nameClient.getRestauItalianChoice() == true) {
+          if (r.getOpenResItalian()) {
+            console.log("le restaurant Italien est ouvert");
+            nameClient.choiceRecipe(r);
+            r.needRefuelingItalian();
+            r.scoreIt();
+          }
+        }
+      }, WAIT_TO_ENTER);
+
+    }
+  }
 
 
-setTimeout(() => clearInterval(interv), (4800*HOUR_TO_MIN));
+  if (nameClient.getRestauJapChoice() == true) {
+    if (r.getOpenResJap()) {
+      console.log("le restaurant Japonais est ouvert");
+      nameClient.choiceRecipe(r);
+      r.needRefuelingJap();
+      r.scoreJap();
+    }
+    else {
+      console.log("le restaurant Japonais est fermé, attendez 10 min ")
+      setTimeout(() => {
+        nameClient.choiceRestaurant(r);
+        if (nameClient.getRestauJapChoice() == true) {
+          if (r.getOpenResJap()) {
+            console.log("le restaurant Japonais est ouvert");
+            nameClient.choiceRecipe(r);
+            r.needRefuelingJap();
+            r.scoreJap();
+          }
+        }
+      }, WAIT_TO_ENTER);
 
+    }
+  }
 
+  if (nameClient.getRestauFrenchChoice() == true) {
+    if (r.getOpenResFrench()) {
+      console.log("le restaurant Français est ouvert");
+      nameClient.choiceRecipe(r);
+      r.needRefuelingFrench();
+      r.scoreFr();
+    }
+    else {
+      console.log("le restaurant Français est fermé, attendez 10 min ")
+      setTimeout(() => {
+        nameClient.choiceRestaurant(r);
+        if (nameClient.getRestauFrenchChoice() == true) {
+          if (r.getOpenResFrench()) {
+            console.log("le restaurant Français est ouvert");
+            nameClient.choiceRecipe(r);
+            r.needRefuelingFrench();
+            r.scoreFr();
+          }
+        }
+      }, WAIT_TO_ENTER);
 
-//m.opening();
-//r.goRefueling();
-//c.choiceRestaurant();
-
-
-
+    }
+  }
+}
 
 
 
