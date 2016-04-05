@@ -30,7 +30,7 @@ module.exports = function(grunt) {
     },
     execute: {
       js: {
-        src: ['app/index.js'] // change it by you filename (for the final
+        src: ['app/Main.js'] // change it by you filename (for the final
                               // program use main or index)
       }
     }
