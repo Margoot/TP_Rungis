@@ -18,8 +18,6 @@ class Restaurant {
       Math.floor(Math.random() * 24);
     this.closeTimeResFrench =
       Math.floor(Math.random() * 24);
-
-
     this.emptyStock = 0;
     this.openResItalian = false;
     this.openResJap = false;
@@ -52,7 +50,7 @@ class Restaurant {
     this.stockFrench = {
       "beef": 1,
       "sauce": 1,
-      "riz": 1,
+      "rice": 1,
       "bread": 1,
       "potatoes": 1,
       "cheese": 1,
@@ -87,7 +85,7 @@ class Restaurant {
     this.recipe1French = {
       "beef": 1,
       "sauce": 1,
-      "riz": 1,
+      "rice": 1,
       "bread": 1
     };
     this.recipe2French = {
@@ -117,7 +115,6 @@ class Restaurant {
   getOpenTimeResFrench() {
     return this.openTimeResFrench;
   }
-
   getCloseTimeResFrench() {
     return this.closeTimeResFrench;
   }
@@ -169,7 +166,6 @@ class Restaurant {
 
 
   createRecipe1(stock, recipe) {
-
     return new Promise((resolve, reject) => {
       var numIng = 0;
       for (var i in recipe) {
@@ -188,6 +184,7 @@ class Restaurant {
     });
   }
 
+
   useIngredients(stock, recipe) {
     console.log("nouveau stock après consommation : ");
     for (var i in recipe) {
@@ -199,7 +196,6 @@ class Restaurant {
     }
     console.log(stock);
   };
-
   cook(resistance) {
     var cookTime = Math.floor((Math.random() * 50) + 5);
     setTimeout(()=> {
@@ -207,16 +203,14 @@ class Restaurant {
         console.log(
           "j'ai déjà attendu " + resistance + "minutes, c'est trop long ! ");
       }
-
       else {
-        console.log("Votre plat est prêt!!");
+        console.log("Votre plat est prêt!! (cookTime"+ cookTime + ")");
         if (cookTime < (resistance - 10))
           this.scoreCase = 2;
         else
           this.scoreCase = 1;
       }
     }, cookTime);
-
   }
 
   createRecipe2(stock, recipe) {
@@ -237,7 +231,6 @@ class Restaurant {
         reject();
     });
   }
-
   //====== REFUELING ========
 
   needRefuelingItalian() {
@@ -343,5 +336,4 @@ class Restaurant {
       (this.frenchScore * this.closeTimeResFrench));
   }
 }
-
 module.exports.Restaurant = Restaurant;

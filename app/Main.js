@@ -117,6 +117,9 @@ function createClient() {
             r.needRefuelingItalian();
             r.scoreIt();
           }
+          else
+            console.log(
+              "le restaurant Italien est fermé au bout du 2eme essai, au revoir");
         }
       }, WAIT_TO_ENTER);
 
@@ -142,6 +145,9 @@ function createClient() {
             r.needRefuelingJap();
             r.scoreJap();
           }
+          else
+            console.log(
+              "le restaurant Japonais est fermé au bout du 2eme essai, au revoir");
         }
       }, WAIT_TO_ENTER);
 
@@ -166,6 +172,9 @@ function createClient() {
             r.needRefuelingFrench();
             r.scoreFr();
           }
+          else
+            console.log(
+              "le restaurant Français est fermé au bout du 2eme essai, au revoir");
         }
       }, WAIT_TO_ENTER);
 

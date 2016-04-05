@@ -64,13 +64,13 @@ class Client {
   }
 
   choiceRecipe(restaurant) {
-    console.log(this.recipeRandom);
     switch (this.recipeRandom) {
       case 0 :
         console.log("Nous allons vérifier que votre recette est réalisable");
         restaurant.createRecipe1(this.stock, this.recipe1)
           .then(() => {
-            console.log("Nous allons préparer votre plat : " + this.recipe1);
+            console.log("Nous allons préparer votre plat : ");
+            console.log(this.recipe1);
             restaurant.useIngredients(this.stock, this.recipe1);
             restaurant.cook(this.resistance);
           })
@@ -78,7 +78,8 @@ class Client {
             restaurant.createRecipe2(this.stock, this.recipe2)
               .then(() => {
                 console.log(
-                  "Nous allons préparer votre plat : " + this.recipe2);
+                  "Nous allons préparer votre plat : ");
+                console.log(this.recipe2);
                 restaurant.useIngredients(this.stock, this.recipe2);
                 restaurant.cook(this.resistance);
               })
@@ -94,7 +95,8 @@ class Client {
         console.log("Nous allons vérifier que votre recette est réalisable");
         restaurant.createRecipe2(this.stock, this.recipe2)
           .then(() => {
-            console.log("Nous allons préparer votre plat : " + this.recipe2);
+            console.log("Nous allons préparer votre plat : ");
+            console.log(this.recipe2);
             restaurant.useIngredients(this.stock, this.recipe2);
             restaurant.cook(this.resistance);
           })
@@ -102,7 +104,8 @@ class Client {
             restaurant.createRecipe1(this.stock, this.recipe1)
               .then(() => {
                 console.log(
-                  "Nous allons préparer votre plat : " + this.recipe1);
+                  "Nous allons préparer votre plat : ");
+                console.log(this.recipe1);
                 restaurant.useIngredients(this.stock, this.recipe1);
                 restaurant.cook(this.resistance);
               })

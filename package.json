@@ -1,9 +1,33 @@
 {
-  "name": "sample_project",
+  "name": "TP_RUNGIS",
   "version": "1.0.0",
-  "description": "",
-  "main": "Gruntfile.js",
-  "devDependencies": {
+  "description": "TP Javascript afin de simuler les flux entrées sorties dans des restaurant et des marchés",
+  "main": "mainElectron.js",
+"scripts": {
+  "start":"electron ."
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonthme/TP_Rungis.git"
+  },
+
+
+  "author": "Margot LE ROUZIC, Simon THOME & Jérémie BILLOT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/patoninho1/Javascript/issues"
+  },
+  "homepage": "https://github.com/patoninho1/Javascript#readme",
+  "dependencies": {
+    "electron-prebuilt" :"^0.25.1",
+    "bluebird": "^3.3.4",
+    "chalk": "^1.1.1",
+    "grunt": "^0.4.5"
+  },
+}
+
+/*
+"devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
@@ -13,9 +37,4 @@
     "load-grunt-tasks": "^3.4.1",
     "time-grunt": "^1.3.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
-}
+  */
