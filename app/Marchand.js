@@ -1,16 +1,14 @@
-'use strict'
-
-var Promise = require('bluebird');
+'use strict';
 
 class Marchand {
   constructor() {}
 
   openingRungis() {
-    console.log("le marché de Rungis est ouvert");
+    console.log('le marché de Rungis est ouvert');
   }
 
   closingRungis() {
-    console.log("le marché de Rungis est fermé")
+    console.log('le marché de Rungis est fermé');
   }
 }
 

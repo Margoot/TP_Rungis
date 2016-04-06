@@ -2,8 +2,6 @@
 
 var Promise = require('bluebird');
 
-var Marchand = require('./Marchand.js');
-
 class Restaurant {
   constructor() {
     this.openTimeResItalian =
@@ -27,72 +25,72 @@ class Restaurant {
     this.frenchScore = 0;
 
     this.stockItalian = {
-      "eggs": 1,
-      "pasta": 1,
-      "bacon": 1,
-      "cream": 1,
-      "onions": 1,
-      "salad": 1,
-      "tomatoes": 1,
-      "mozarella": 1,
-      "chicken": 1,
-      "parmesan": 1
+      eggs: 1,
+      pasta: 1,
+      bacon: 1,
+      cream: 1,
+      onions: 1,
+      salad: 1,
+      tomatoes: 1,
+      mozarella: 1,
+      chicken: 1,
+      parmesan: 1
     };
     this.stockJap = {
-      "sushi": 1,
-      "california": 1,
-      "maki": 1,
-      "brochettes": 1,
-      "miso soup": 1,
-      "ramen": 1,
-      "maki nutella": 1
+      sushi: 1,
+      california: 1,
+      maki: 1,
+      brochettes: 1,
+      miso_soup: 1,
+      ramen: 1,
+      maki_nutella: 1
     };
     this.stockFrench = {
-      "beef": 1,
-      "sauce": 1,
-      "rice": 1,
-      "bread": 1,
-      "potatoes": 1,
-      "cheese": 1,
-      "ham": 1,
-      "carrot": 1
+      beef: 1,
+      sauce: 1,
+      rice: 1,
+      bread: 1,
+      potatoes: 1,
+      cheese: 1,
+      ham: 1,
+      carrot: 1
     };
     this.recipe1Italian = {
-      "eggs": 1,
-      "pasta": 1,
-      "bacon": 1,
-      "cream": 1,
-      "onions": 1
+      eggs: 1,
+      pasta: 1,
+      bacon: 1,
+      cream: 1,
+      onions: 1
     };
     this.recipe2Italian = {
-      "salad": 1,
-      "tomatoes": 1,
-      "mozarella": 1,
-      "chicken": 1,
-      "parmesan": 1
+      salad: 1,
+      tomatoes: 1,
+      mozarella: 1,
+      chicken: 1,
+      parmesan: 1
     };
     this.recipe1Jap = {
-      "sushi": 1,
-      "california": 1,
-      "maki": 1,
-      "brochettes": 1
+      sushi: 1,
+      california: 1,
+      maki: 1,
+      brochettes: 1
     };
     this.recipe2Jap = {
-      "miso soup": 1,
-      "ramen": 1,
-      "maki nutella": 1
+      miso_soup: 1,
+      ramen: 1,
+      maki_nutella: 1
     };
     this.recipe1French = {
-      "beef": 1,
-      "sauce": 1,
-      "rice": 1,
-      "bread": 1
+      beef: 1,
+      sauce: 1,
+      rice: 1,
+      bread: 1
     };
     this.recipe2French = {
-      "potatoes": 1,
-      "cheese": 1,
-      "ham": 1,
-      "carrot": 1
+      potatoes: 1,
+      cheese: 1,
+      ham: 1,
+      carrot: 1
     };
   }
 
@@ -136,33 +134,33 @@ class Restaurant {
 
   openingResItalian() {
     this.openResItalian = true;
-    console.log("Le restaurant Italien est ouvert");
-  };
+    console.log('Le restaurant Italien est ouvert');
+  }
 
   closingResItalian() {
     this.openResItalian = false;
-    console.log("Le restaurant Italien est fermé");
-  };
+    console.log('Le restaurant Italien est fermé');
+  }
 
   openingResJap() {
     this.openResJap = true;
-    console.log("Le restaurant Japonnais est ouvert");
-  };
+    console.log('Le restaurant Japonnais est ouvert');
+  }
 
   closingResJap() {
     this.openResJap = false;
-    console.log("Le restaurant Japonnais est fermé");
-  };
+    console.log('Le restaurant Japonnais est fermé');
+  }
 
   openingResFrench() {
     this.openResFrench = true;
-    console.log("Le restaurant Français est ouvert");
-  };
+    console.log('Le restaurant Français est ouvert');
+  }
 
   closingResFrench() {
     this.openResFrench = false;
-    console.log("Le restaurant Français est fermé");
-  };
+    console.log('Le restaurant Français est fermé');
+  }
 
 
   createRecipe1(stock, recipe) {
@@ -172,21 +170,20 @@ class Restaurant {
         for (var j in stock) {
           if (i === j && stock.hasOwnProperty(j)) {
             if (stock[j] > 0) {
+              console.log(recipe[i]);
               numIng++;
             }
           }
         }
+        if (numIng === Object.keys(recipe).length)
+          resolve();
+        else
+          reject();
       }
-      if (numIng === Object.keys(recipe).length)
-        resolve();
-      else
-        reject();
     });
   }
-
-
   useIngredients(stock, recipe) {
-    console.log("nouveau stock après consommation : ");
+    console.log('Nouveau stock après consommation : ');
     for (var i in recipe) {
       for (var j in stock) {
         if (i === j && stock.hasOwnProperty(j)) {
@@ -195,16 +192,17 @@ class Restaurant {
       }
     }
     console.log(stock);
-  };
+  }
+
   cook(resistance) {
     var cookTime = Math.floor((Math.random() * 50) + 5);
     setTimeout(()=> {
       if (cookTime > resistance) {
         console.log(
-          "j'ai déjà attendu " + resistance + "minutes, c'est trop long ! ");
+          'j\'ai déjà attendu' + resistance + 'minutes, c\'est trop long !');
       }
       else {
-        console.log("Votre plat est prêt!! (cookTime"+ cookTime + ")");
+        console.log('Votre plat est prêt!! (cookTime'+ cookTime + ')');
         if (cookTime < (resistance - 10))
           this.scoreCase = 2;
         else
@@ -216,10 +214,12 @@ class Restaurant {
   createRecipe2(stock, recipe) {
     return new Promise((resolve, reject) => {
       var numIng = 0;
+      console.log(recipe);
       for (var i in recipe) {
         for (var j in stock) {
           if (i === j && stock.hasOwnProperty(j)) {
             if (stock[j] > 0) {
+
               numIng++;
             }
           }
@@ -242,13 +242,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log("Le restaurant Italien se rend à Rungis ");
+      console.log('Le restaurant Italien se rend à Rungis ');
       setTimeout(() => {
         for (var i in this.stockItalian) {
           this.stockItalian[i] = 20;
         }
-        console.log("Le Restaurant Italien a fini son ravitaillement en " +
-          refuelingTime + " minutes");
+        console.log('Le Restaurant Italien a fini son ravitaillement en ' +
+          refuelingTime + ' minutes');
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -264,13 +264,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log("Le restaurant Japonais se rend à Rungis ");
+      console.log('Le restaurant Japonais se rend à Rungis');
       setTimeout(() => {
         for (var i in this.stockJap) {
           this.stockJap[i] = 20;
         }
-        console.log("Le Restaurant Japonais a fini son ravitaillement en " +
-          refuelingTime + " minutes");
+        console.log('Le Restaurant Japonais a fini son ravitaillement en ' +
+          refuelingTime + ' minutes');
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -285,13 +285,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log("Le restaurant Français se rend à Rungis ");
+      console.log('Le restaurant Français se rend à Rungis ');
       setTimeout(() => {
         for (var i in this.stockFrench) {
           this.stockFrench[i] = 20;
         }
-        console.log("Le Restaurant Français a fini son ravitaillement en " +
-          refuelingTime + " minutes");
+        console.log('Le Restaurant Français a fini son ravitaillement en ' +
+          refuelingTime + ' minutes');
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -306,7 +306,7 @@ class Restaurant {
         this.italianScore = this.italianScore + 2;
         break;
     }
-    console.log("le score du restaurant Italien est de : " +
+    console.log('le score du restaurant Italien est de : ' +
       (this.italianScore * this.closeTimeResItalian));
   }
 
@@ -319,7 +319,7 @@ class Restaurant {
         this.japScore = this.japScore + 2;
         break;
     }
-    console.log("le score du restaurant Japonais est de : " +
+    console.log('le score du restaurant Japonais est de : '+
       (this.japScore * this.closeTimeResJap));
   }
 
@@ -332,7 +332,7 @@ class Restaurant {
         this.frenchScore = this.frenchScore + 2;
         break;
     }
-    console.log("le score du restaurant Français est de : " +
+    console.log('le score du restaurant Français est de : ' +
       (this.frenchScore * this.closeTimeResFrench));
   }
 }

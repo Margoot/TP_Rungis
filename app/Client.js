@@ -1,8 +1,5 @@
 'use strict';
 
-var Promise = require('bluebird');
-
-var Restaurant = require('./Restaurant.js');
 
 const NB_RESTAURANT = 3;
 const NB_RECIPE = 2;
@@ -30,7 +27,7 @@ class Client {
   }
 
   choiceRestaurant(restaurant) {
-    console.log("le client va choisir le restau");
+    console.log('le client va choisir le restau');
     switch (this.restauChoice) {
       case 0 :
         this.stock = restaurant.stockItalian;
@@ -38,7 +35,7 @@ class Client {
         this.recipe2 = restaurant.recipe2Italian;
         this.restauItalianChoice = true;
         console.log(
-          "nous allons vérifier que le restaurant italien est ouvert");
+          'nous allons vérifier que le restaurant italien est ouvert');
 
         break;
       case 1 :
@@ -47,7 +44,7 @@ class Client {
         this.recipe2 = restaurant.recipe2Jap;
         this.restauJapChoice = true;
         console.log(
-          "nous allons vérifier que le restaurant japonnais est ouvert");
+          'nous allons vérifier que le restaurant japonnais est ouvert');
         break;
       case 2 :
         this.stock = restaurant.stockFrench;
@@ -55,10 +52,10 @@ class Client {
         this.recipe2 = restaurant.recipe2French;
         this.restauFrenchChoice = true;
         console.log(
-          "nous allons vérifier que le restaurant français est ouvert");
+          'nous allons vérifier que le restaurant français est ouvert');
         break;
       default :
-        console.log(`Error : ${err}`);
+        console.log('Error');
     }
 
   }
@@ -66,10 +63,10 @@ class Client {
   choiceRecipe(restaurant) {
     switch (this.recipeRandom) {
       case 0 :
-        console.log("Nous allons vérifier que votre recette est réalisable");
+        console.log('Nous allons vérifier que votre recette est réalisable');
         restaurant.createRecipe1(this.stock, this.recipe1)
           .then(() => {
-            console.log("Nous allons préparer votre plat : ");
+            console.log('Nous allons préparer votre plat : ');
             console.log(this.recipe1);
             restaurant.useIngredients(this.stock, this.recipe1);
             restaurant.cook(this.resistance);
@@ -78,24 +75,22 @@ class Client {
             restaurant.createRecipe2(this.stock, this.recipe2)
               .then(() => {
                 console.log(
-                  "Nous allons préparer votre plat : ");
+                  'Nous allons préparer votre plat : ');
                 console.log(this.recipe2);
                 restaurant.useIngredients(this.stock, this.recipe2);
                 restaurant.cook(this.resistance);
               })
               .catch(() => {
                 console.log(
-                  "aucune recette n'est disponible, nous en sommes désolés")
+                  'aucune recette n\'est disponible, nous en sommes désolés');
               });
-
-
           });
         break;
       case 1 :
-        console.log("Nous allons vérifier que votre recette est réalisable");
+        console.log('Nous allons vérifier que votre recette est réalisable');
         restaurant.createRecipe2(this.stock, this.recipe2)
           .then(() => {
-            console.log("Nous allons préparer votre plat : ");
+            console.log('Nous allons préparer votre plat : ');
             console.log(this.recipe2);
             restaurant.useIngredients(this.stock, this.recipe2);
             restaurant.cook(this.resistance);
@@ -104,14 +99,14 @@ class Client {
             restaurant.createRecipe1(this.stock, this.recipe1)
               .then(() => {
                 console.log(
-                  "Nous allons préparer votre plat : ");
+                  'Nous allons préparer votre plat : ');
                 console.log(this.recipe1);
                 restaurant.useIngredients(this.stock, this.recipe1);
                 restaurant.cook(this.resistance);
               })
               .catch(
                 () => console.log(
-                  "aucune recette n'est disponible, nous en sommes désolés"));
+                  'aucune recette n\'est disponible, nous en sommes désolés'));
           });
         break;
     }
