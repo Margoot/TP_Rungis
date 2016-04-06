@@ -3,6 +3,7 @@
 var marchand = require('./Marchand.js');
 var restaurant = require('./Restaurant.js');
 var client = require('./Client.js');
+const chalk = require('chalk');
 
 const OPEN_RUNGIS = 5;
 const CLOSE_RUNGIS = 14;
@@ -19,7 +20,7 @@ var hour = 0;
 var minute = 0;
 var day = 1;
 var nameClient = Math.floor((Math.random() * 1000000));
-console.log('=========== DAY ' + day + ' ============');
+console.log(chalk.yellow('=========== DAY ' + day + ' ============'));
 var timer = setInterval(clock, MS_FOR_MIN);
 
 function clock() {
@@ -48,9 +49,9 @@ function clock() {
   if (hour == 24) {
     hour = 0;
     day += 1;
-    console.log('=========== DAY ' + day + ' ===========');
+    console.log(chalk.yellow('=========== DAY ' + day + ' ==========='));
     if (day == 4) {
-      console.log('FIN DE LA SIMULATION');
+      console.log(chalk.yellow('=========== FIN DE LA SIMULATION ============'));
       clearInterval(timer);
       r.scoreIt();
       r.scoreJap();
@@ -106,29 +107,29 @@ function openRes() {
 
 function createClient() {
   nameClient = new client.Client();
-  console.log('un nouveau client à faim');
+  console.log(chalk.blue('A new client is hungry ! '));
   nameClient.choiceRestaurant(r);
   if (nameClient.getRestauItalianChoice() === true) {
     if (r.getOpenResItalian()) {
-      console.log('le restaurant Italien est ouvert');
+      console.log(chalk.green('The restaurant italian is opened ! '));
       nameClient.choiceRecipe(r);
       r.needRefuelingItalian();
       r.scoreIt();
     }
     else {
-      console.log('le restaurant italien est fermé, attendez 10 min ');
+      console.log(chalk.red('The italian restaurant is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauItalianChoice() === true) {
           if (r.getOpenResItalian()) {
-            console.log('le restaurant Italien est ouvert');
+            console.log(chalk.green('The restaurant italian is opened ! '));
             nameClient.choiceRecipe(r);
             r.needRefuelingItalian();
             r.scoreIt();
           }
           else
             console.log(
-              'le restaurant Italien est fermé au bout du 2eme essai, au revoir');
+              chalk.red('2nd try, the italian restaurant is still closed, seen you soon ! '));
         }
       }, WAIT_TO_ENTER);
 
@@ -138,25 +139,25 @@ function createClient() {
 
   if (nameClient.getRestauJapChoice() === true) {
     if (r.getOpenResJap()) {
-      console.log('le restaurant Japonais est ouvert');
+      console.log(chalk.green('The restaurant japanese is opened ! '));
       nameClient.choiceRecipe(r);
       r.needRefuelingJap();
       r.scoreJap();
     }
     else {
-      console.log('le restaurant Japonais est fermé, attendez 10 min ');
+      console.log(chalk.red('The japanese restaurant is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauJapChoice() === true) {
           if (r.getOpenResJap()) {
-            console.log('le restaurant Japonais est ouvert');
+            console.log(chalk.green('The restaurant japanese is opened ! '));
             nameClient.choiceRecipe(r);
             r.needRefuelingJap();
             r.scoreJap();
           }
           else
             console.log(
-              'le restaurant Japonais est fermé au bout du 2eme essai, au revoir');
+                chalk.red('2nd try, the japanese restaurant is still closed, seen you soon ! '));
         }
       }, WAIT_TO_ENTER);
 
@@ -165,25 +166,25 @@ function createClient() {
 
   if (nameClient.getRestauFrenchChoice() === true) {
     if (r.getOpenResFrench()) {
-      console.log('le restaurant Français est ouvert');
+      console.log(chalk.green('The restaurant french is opened ! '));
       nameClient.choiceRecipe(r);
       r.needRefuelingFrench();
       r.scoreFr();
     }
     else {
-      console.log('le restaurant Français est fermé, attendez 10 min ');
+      console.log(chalk.red('The japanese french is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauFrenchChoice() === true) {
           if (r.getOpenResFrench()) {
-            console.log('le restaurant Français est ouvert');
+            console.log(chalk.green('The restaurant french is opened ! '));
             nameClient.choiceRecipe(r);
             r.needRefuelingFrench();
             r.scoreFr();
           }
           else {
               console.log(
-                  'le restaurant Français est fermé au bout du 2eme essai, au revoir');
+                  chalk.red('2nd try, the french restaurant is still closed, seen you soon ! '));
           }
         }
       }, WAIT_TO_ENTER);

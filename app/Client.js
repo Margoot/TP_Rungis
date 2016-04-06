@@ -1,6 +1,6 @@
 'use strict';
 
-
+const chalk = require('chalk');
 const NB_RESTAURANT = 3;
 const NB_RECIPE = 2;
 
@@ -27,7 +27,7 @@ class Client {
   }
 
   choiceRestaurant(restaurant) {
-    console.log('le client va choisir le restau');
+    console.log(chalk.blue('The client has chosen the restaurant ! '));
     switch (this.restauChoice) {
       case 0 :
         this.stock = restaurant.stockItalian;
@@ -35,7 +35,7 @@ class Client {
         this.recipe2 = restaurant.recipe2Italian;
         this.restauItalianChoice = true;
         console.log(
-          'nous allons vérifier que le restaurant italien est ouvert');
+          chalk.blue('We are checking the if the italian restaurant is opened.'));
 
         break;
       case 1 :
@@ -44,7 +44,7 @@ class Client {
         this.recipe2 = restaurant.recipe2Jap;
         this.restauJapChoice = true;
         console.log(
-          'nous allons vérifier que le restaurant japonnais est ouvert');
+            chalk.blue('We are checking the if the japanese restaurant is opened.'));
         break;
       case 2 :
         this.stock = restaurant.stockFrench;
@@ -52,10 +52,10 @@ class Client {
         this.recipe2 = restaurant.recipe2French;
         this.restauFrenchChoice = true;
         console.log(
-          'nous allons vérifier que le restaurant français est ouvert');
+            chalk.blue('We are checking the if the french restaurant is opened.'));
         break;
       default :
-        console.log('Error');
+        console.log(chalk.red('Error'));
     }
 
   }
@@ -63,10 +63,10 @@ class Client {
   choiceRecipe(restaurant) {
     switch (this.recipeRandom) {
       case 0 :
-        console.log('Nous allons vérifier que votre recette est réalisable');
+        console.log(chalk.blue('We are checking if your recipe can be cooked ! '));
         restaurant.createRecipe1(this.stock, this.recipe1)
           .then(() => {
-            console.log('Nous allons préparer votre plat : ');
+            console.log(chalk.green('We are cooking your meal : '));
             console.log(this.recipe1);
             restaurant.useIngredients(this.stock, this.recipe1);
             restaurant.cook(this.resistance);
@@ -75,22 +75,22 @@ class Client {
             restaurant.createRecipe2(this.stock, this.recipe2)
               .then(() => {
                 console.log(
-                  'Nous allons préparer votre plat : ');
+                chalk.green('We are cooking your meal : '));
                 console.log(this.recipe2);
                 restaurant.useIngredients(this.stock, this.recipe2);
                 restaurant.cook(this.resistance);
               })
               .catch(() => {
                 console.log(
-                  'aucune recette n\'est disponible, nous en sommes désolés');
+                  chalk.red('No available recipe, sorry ! '));
               });
           });
         break;
       case 1 :
-        console.log('Nous allons vérifier que votre recette est réalisable');
+        console.log(chalk.blue('We are checking if your recipe can be cooked ! '));
         restaurant.createRecipe2(this.stock, this.recipe2)
           .then(() => {
-            console.log('Nous allons préparer votre plat : ');
+            console.log(chalk.green('We are cooking your meal : '));
             console.log(this.recipe2);
             restaurant.useIngredients(this.stock, this.recipe2);
             restaurant.cook(this.resistance);
@@ -99,14 +99,14 @@ class Client {
             restaurant.createRecipe1(this.stock, this.recipe1)
               .then(() => {
                 console.log(
-                  'Nous allons préparer votre plat : ');
+                chalk.green('We are cooking your meal : '));
                 console.log(this.recipe1);
                 restaurant.useIngredients(this.stock, this.recipe1);
                 restaurant.cook(this.resistance);
               })
               .catch(
                 () => console.log(
-                  'aucune recette n\'est disponible, nous en sommes désolés'));
+                chalk.red('No available recipe, sorry ! '));
           });
         break;
     }

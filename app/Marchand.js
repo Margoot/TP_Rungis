@@ -1,14 +1,16 @@
 'use strict';
+const chalk = require('chalk');
+
 
 class Marchand {
   constructor() {}
 
   openingRungis() {
-    console.log('le marché de Rungis est ouvert');
+    console.log(chalk.cyan('RUNGIS MARKET : OPENED'));
   }
 
   closingRungis() {
-    console.log('le marché de Rungis est fermé');
+    console.log(chalk.cyan('RUNGIS MARKET : CLOSED'));
   }
 }
 

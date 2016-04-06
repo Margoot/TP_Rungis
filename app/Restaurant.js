@@ -1,5 +1,5 @@
 'use strict';
-
+const chalk = require('chalk');
 var Promise = require('bluebird');
 
 class Restaurant {
@@ -134,32 +134,32 @@ class Restaurant {
 
   openingResItalian() {
     this.openResItalian = true;
-    console.log('Le restaurant Italien est ouvert');
+    console.log(chalk.green('The italian restaurant is opened ! '));
   }
 
   closingResItalian() {
     this.openResItalian = false;
-    console.log('Le restaurant Italien est fermé');
+    console.log(chalk.red('The italian restaurant is closed'));
   }
 
   openingResJap() {
     this.openResJap = true;
-    console.log('Le restaurant Japonnais est ouvert');
+    console.log(chalk.green('The japanese restaurant is opened ! '));
   }
 
   closingResJap() {
     this.openResJap = false;
-    console.log('Le restaurant Japonnais est fermé');
+    console.log(chalk.red('The japanese restaurant is closed'));
   }
 
   openingResFrench() {
     this.openResFrench = true;
-    console.log('Le restaurant Français est ouvert');
+    console.log(chalk.green('The french restaurant is opened ! '));
   }
 
   closingResFrench() {
     this.openResFrench = false;
-    console.log('Le restaurant Français est fermé');
+    console.log(chalk.red('The french restaurant is closed'));
   }
 
 
@@ -183,7 +183,7 @@ class Restaurant {
     });
   }
   useIngredients(stock, recipe) {
-    console.log('Nouveau stock après consommation : ');
+    console.log(chalk.magenta('New stock after consumption : '));
     for (var i in recipe) {
       for (var j in stock) {
         if (i === j && stock.hasOwnProperty(j)) {
@@ -199,10 +199,10 @@ class Restaurant {
     setTimeout(()=> {
       if (cookTime > resistance) {
         console.log(
-          'j\'ai déjà attendu' + resistance + 'minutes, c\'est trop long !');
+          chalk.red('I already wait ' + resistance + ' minutes, that\'s too long !'));
       }
       else {
-        console.log('Votre plat est prêt!! (cookTime'+ cookTime + ')');
+        console.log(chalk.green('Your meal is ready !! (cookTime'+ cookTime + ')'));
         if (cookTime < (resistance - 10))
           this.scoreCase = 2;
         else
@@ -242,13 +242,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log('Le restaurant Italien se rend à Rungis ');
+      console.log(chalk.cyan('The italian restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockItalian) {
           this.stockItalian[i] = 20;
         }
-        console.log('Le Restaurant Italien a fini son ravitaillement en ' +
-          refuelingTime + ' minutes');
+        console.log(chalk.cyan('The italian restaurant done is refueling in ' +
+          refuelingTime + ' minutes'));
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -264,13 +264,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log('Le restaurant Japonais se rend à Rungis');
+      console.log(chalk.cyan('The japanese restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockJap) {
           this.stockJap[i] = 20;
         }
-        console.log('Le Restaurant Japonais a fini son ravitaillement en ' +
-          refuelingTime + ' minutes');
+        console.log(chalk.cyan('The japanese restaurant done is refueling in ' +
+          refuelingTime + ' minutes'));
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -285,13 +285,13 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log('Le restaurant Français se rend à Rungis ');
+      console.log(chalk.cyan('The french restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockFrench) {
           this.stockFrench[i] = 20;
         }
-        console.log('Le Restaurant Français a fini son ravitaillement en ' +
-          refuelingTime + ' minutes');
+        console.log(chalk.cyan('The french restaurant done is refueling in ' +
+          refuelingTime + ' minutes'));
       }, refuelingTime);
       this.emptyStock = 0;
     }
@@ -306,8 +306,8 @@ class Restaurant {
         this.italianScore = this.italianScore + 2;
         break;
     }
-    console.log('le score du restaurant Italien est de : ' +
-      (this.italianScore * this.closeTimeResItalian));
+    console.log(chalk.bgYellow('ITALIAN RESTAURANT SCORE : ' +
+      (this.italianScore * this.closeTimeResItalian)));
   }
 
   scoreJap() {
@@ -319,8 +319,8 @@ class Restaurant {
         this.japScore = this.japScore + 2;
         break;
     }
-    console.log('le score du restaurant Japonais est de : '+
-      (this.japScore * this.closeTimeResJap));
+    console.log(chalk.bgYellow('JAPANESE RESTAURANT SCORE : '+
+      (this.japScore * this.closeTimeResJap)));
   }
 
   scoreFr() {
@@ -332,8 +332,8 @@ class Restaurant {
         this.frenchScore = this.frenchScore + 2;
         break;
     }
-    console.log('le score du restaurant Français est de : ' +
-      (this.frenchScore * this.closeTimeResFrench));
+    console.log(chalk.bgYellow('FRENCH RESTAURANT SCORE : ' +
+      (this.frenchScore * this.closeTimeResFrench)));
   }
 }
 module.exports.Restaurant = Restaurant;
