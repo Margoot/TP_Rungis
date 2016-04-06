@@ -30,6 +30,9 @@ module.exports = function(grunt) {
     },
     execute: {
       js: {
+        options: {
+          args: ['--color']
+        },
         src: ['app/Main.js'] // change it by you filename (for the final
                               // program use main or index)
       }
