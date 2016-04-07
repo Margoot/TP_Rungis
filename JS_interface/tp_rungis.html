@@ -25,7 +25,9 @@
   text-overflow: clip;  
   position: absolute;  
   text-align: left;  
-  visibility: visible;
+  visibility: visible;  
+  float: left;  
+  left: -90px;
 }
 
 #new_client_it {  
@@ -67,36 +69,46 @@
   position: relative;
 }
 
+#rungis_open_close {  
+  position: absolute;
+}
+
+#open_close_it_restaurant {  
+  float: none;
+}
+
 </style></head>
   <body>
     <h1  style="text-align: center; background-color: rgb(192, 192, 192);"><span
          style="text-decoration: underline;"> <span  style="font-family: Rage; background-attachment: scroll; background-clip: border-box;">Rungis
-          market</span><br>
-      </span></h1>
-    <div  id="clock"  style="text-align: center;"><img  style="width: 37px; height: 37px;"
-         alt="clock1"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/clock.png"><img
-         style="width: 35px; height: 35px;"  alt="clock"  src="im_js/clock.png"><output
-         for="clock"  name="clockaffiche"></output></div>
-    <div  id="fond_restaurant"  style="text-align: center; background-color: rgb(0, 0, 0);">
-      <img  alt="Restaurant Italien"  style="width: 261px; height: 103px;"  title="Restaurant Italien"
+          market</span></span></h1>
+    <div  style="text-align: center;"><img  style="width: 42px; height: 42px;"  title="clock_logo"
+         alt="clock_logo"  src="im_js/clock_logo.png"></div>
+    <div  id="clock"  style="text-align: center;"><img  style="width: 35px; height: 35px;"
+         alt="clock"  src="im_js/clock.png"><output  style="width: 48px;"  for="clock"
+         name="clockaffiche"></output></div>
+    <div  id="fond_restaurant"  style="text-align: center; background-color: rgb(0, 0, 0);"><img
+         alt="Restaurant Italien"  style="width: 261px; height: 103px;"  title="Restaurant Italien"
          src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/italien.jpg">
-      &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
+      &nbsp;&nbsp; <img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
       &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"  alt="it_menu2"  src="im_js/it_menu2.png">
-      &nbsp; &nbsp;&nbsp; <img  id="new_client_it"  style="width: 44px; height: 44px; top: 186px; left: 968px;"
+      &nbsp; &nbsp;&nbsp; <img  id="new_client_it"  style="width: 44px; height: 44px; top: 233px; left: 968px;"
          alt="new_client"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_it.png"><output
          for="new_client_it"  name="client_it"></output> <br>
-      <span  id="score1"  style="font-weight: bold; font-family: Berlin Sans FB;">SCORE
-        :&nbsp; <output  for="score1"  name="score_it"></output><br>
-        <br>
-      </span>
-      <div  style="text-align: left;"><img  id="rungis"  style="width: 157px; height: 96px; padding-left: 150px; float: right; top: 255px;"
+      <div  style="text-align: left;">
+        <div  style="text-align: center;"><span  id="score1"  style="font-weight: bold; font-family: Berlin Sans FB;">SCORE
+            :&nbsp; <output  for="score1"  name="score_it"></output></span></div>
+        <span  style="font-weight: bold; font-family: Berlin Sans FB;"></span><textarea
+ style="left: 8px; width: 49px; top: 254px; height: 96px;"  id="rungis_open_close"
+ name="open_close_rungis"></textarea></div>
+      <div  style="text-align: right;"><img  id="rungis"  style="width: 156px; height: 96px; padding-left: 150px; top: 255px;"
            alt="rungis"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/marche_rungis.png"><span
            style="font-style: italic; font-weight: bold;"> </span></div>
       <div  style="text-align: center;">&nbsp; <img  style="width: 261px; height: 125px;"
            title=" Restaurant Japonais"  alt="Restaurant Japonais"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/japonais.jpg">&nbsp;&nbsp;&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu1"  src="im_js/jp_menu1.png">&nbsp;&nbsp;&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu2"  src="im_js/jp_menu2.png">&nbsp;&nbsp;&nbsp;
-        <img  id="new_client_jp"  style="width: 44px; height: 44px; position: absolute; clear: right; visibility: visible; top: 357px; left: 966px;"
+        <img  id="new_client_jp"  style="width: 44px; height: 44px; position: absolute; clear: right; visibility: visible; top: 381px; left: 966px;"
            alt="new_client"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_jp.png"><span
            style="font-family: Ebrima;"> &nbsp;&nbsp;</span><span  style="font-family: Ebrima;">
           <output  for="new_client_jp"  name="client_jp"></output></span></div>
@@ -113,7 +125,7 @@
         &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"  alt="fr_menu1"  src="im_js/fr_menu1.png">
         &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"  alt="fr_menu2"  src="im_js/fr_menu2.png">
         &nbsp; &nbsp;&nbsp; <output  for="new_client_fr"  name="client_fr"></output>
-        <img  id="new_client_fr"  style="width: 44px; height: 44px; top: 550px; left: 969px;"
+        <img  id="new_client_fr"  style="width: 44px; height: 44px; top: 567px; left: 969px;"
            alt="new_client"  src="im_js/profil_fr.png"></span><span  id="score3"
          style="font-family: Berlin Sans FB; font-weight: bold;"><br>
         <span  style="color: rgb(255, 255, 255);">SCORE : </span><output  for="score3"
