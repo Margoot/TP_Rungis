@@ -90,8 +90,7 @@
     <div  id="fond_restaurant"  style="text-align: center; background-color: rgb(0, 0, 0);"><img
          alt="Restaurant Italien"  style="width: 261px; height: 103px;"  title="Restaurant Italien"
          src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/italien.jpg">
-      &nbsp;<textarea  maxlength="8px"  id="open_close_it_restaurant"  name="open_close_it_restaurant"></textarea>&nbsp;
-      <img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
+      &nbsp;&nbsp; <img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
       &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"  alt="it_menu2"  src="im_js/it_menu2.png">
       &nbsp; &nbsp;&nbsp; <img  id="new_client_it"  style="width: 44px; height: 44px; top: 233px; left: 968px;"
          alt="new_client"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_it.png"><output
