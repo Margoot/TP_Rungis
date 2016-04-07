@@ -15,4 +15,4 @@ class Marchand {
 }
 
 module.exports.Marchand = Marchand;
->
+
