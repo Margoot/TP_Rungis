@@ -78,6 +78,18 @@
   float: none;
 }
 
+#open_it {  
+  position: relative;
+}
+
+#open_jp {  
+  position: relative;
+}
+
+#open_fr {  
+  position: relative;
+}
+
 </style></head>
   <body>
     <h1  style="text-align: center; background-color: rgb(192, 192, 192);"><span
@@ -91,15 +103,19 @@
     <div  id="fond_restaurant"  style="text-align: center; background-color: rgb(0, 0, 0);"><img
          alt="Restaurant Italien"  style="width: 261px; height: 103px;"  title="Restaurant Italien"
          src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/italien.jpg">
-      &nbsp;&nbsp; <img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
-      &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"  alt="it_menu2"  src="im_js/it_menu2.png">
-      &nbsp; &nbsp;&nbsp; <img  id="new_client_it"  style="width: 44px; height: 44px; top: 233px; left: 995px;"
-         alt="new_client"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_it.png"><output
+      &nbsp;<img  id="open_it"  style="width: 42px; height: 42px;"  alt="open_close"
+         src="im_js/sign_it.png">&nbsp; <img  style="width: 82px; height: 103px;"
+         alt="it_menu1"  src="im_js/it_menu1.png"> &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"
+         alt="it_menu2"  src="im_js/it_menu2.png"> &nbsp; &nbsp;&nbsp; <img  id="new_client_it"
+         style="width: 44px; height: 44px; top: 233px; left: 972px;"  alt="new_client"
+         src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_it.png"><output
          for="new_client_it"  name="client_it"></output> <br>
       <div  style="text-align: left;">
-        <div  style="text-align: center;"><span  id="score1"  style="font-weight: bold; font-family: Berlin Sans FB;">SCORE
-            : <br>
-            &nbsp;<output  for="score1"  name="score_it"></output></span></div>
+        <div  style="text-align: center;"><span  id="score1"  style="font-weight: bold; font-family: Berlin Sans FB;"><br>
+            &nbsp;<output  for="score1"  name="score_it"></output></span>
+          <h4><br>
+          </h4>
+        </div>
         <span  style="font-weight: bold; font-family: Berlin Sans FB;"></span><textarea
  style="left: 8px; width: 49px; top: 254px; height: 96px;"  id="rungis_open_close"
  name="open_close_rungis"></textarea></div>
@@ -107,10 +123,11 @@
            alt="rungis"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/marche_rungis.png"><span
            style="font-style: italic; font-weight: bold;"> </span></div>
       <div  style="text-align: center;">&nbsp; <img  style="width: 261px; height: 125px;"
-           title=" Restaurant Japonais"  alt="Restaurant Japonais"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/japonais.jpg">&nbsp;&nbsp;&nbsp;
+           title=" Restaurant Japonais"  alt="Restaurant Japonais"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/japonais.jpg">&nbsp;&nbsp;<img
+           id="open_jp"  style="width: 42px; height: 42px;"  alt="open_jp"  src="im_js/sign_jp.png">&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu1"  src="im_js/jp_menu1.png">&nbsp;&nbsp;&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu2"  src="im_js/jp_menu2.png">&nbsp;&nbsp;&nbsp;
-        <img  id="new_client_jp"  style="width: 44px; height: 44px; position: absolute; clear: right; visibility: visible; top: 407px; left: 1009px;"
+        <img  id="new_client_jp"  style="width: 44px; height: 44px; position: absolute; clear: right; visibility: visible; top: 407px; left: 974px;"
            alt="new_client"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/profil_jp.png"><span
            style="font-family: Ebrima;"> &nbsp;&nbsp;</span><span  style="font-family: Ebrima;">
           <output  for="new_client_jp"  name="client_jp"></output></span></div>
@@ -123,12 +140,13 @@
         <span  style="font-family: Ebrima;"></span></div>
       <span  style="font-family: Ebrima;"> <img  style="width: 261px; height: 118px;"
            title="Restaurant Français"  alt="Restaurant Français"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/francais.jpg">
-        &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"  alt="fr_menu1"  src="im_js/fr_menu1.png">
-        &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"  alt="fr_menu2"  src="im_js/fr_menu2.png">
-        &nbsp; &nbsp;&nbsp; <output  for="new_client_fr"  name="client_fr"></output>
-        <img  id="new_client_fr"  style="width: 44px; height: 44px; top: 589px; left: 1002px;"
-           alt="new_client"  src="im_js/profil_fr.png"></span><span  id="score3"
-         style="font-family: Berlin Sans FB; font-weight: bold;"><br>
+        &nbsp;<img  id="open_fr"  style="width: 42px; height: 42px;"  alt="open_fr"
+           src="im_js/sign_fr.png"> &nbsp;<img  style="width: 82px; height: 118px;"
+           alt="fr_menu1"  src="im_js/fr_menu1.png"> &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"
+           alt="fr_menu2"  src="im_js/fr_menu2.png"> &nbsp; &nbsp;&nbsp; <output
+           for="new_client_fr"  name="client_fr"></output> <img  id="new_client_fr"
+           style="width: 44px; height: 44px; top: 589px; left: 984px;"  alt="new_client"
+           src="im_js/profil_fr.png"></span><span  id="score3"  style="font-family: Berlin Sans FB; font-weight: bold;"><br>
         <span  style="color: rgb(255, 255, 255);">SCORE :<br>
           &nbsp;</span><output  for="score3"  name="score_fr"></output><br>
         <span  style="color: rgb(255, 255, 255);"></span></span><br>
