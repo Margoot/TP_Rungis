@@ -108,6 +108,21 @@
   background-color: rgb(0, 0, 0);
 }
 
+#score_it_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
+#score_jp_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
+#score_fr_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
 </style></head>
   <body>
     <h1  style="text-align: center; background-color: rgb(192, 192, 192);"><span
@@ -131,7 +146,7 @@
         <div  style="text-align: center;">
           <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;">SCORE
               </span></h4><span  style="font-weight: bold; font-family: Berlin Sans FB;"><output
-               for="score1"  name="score_it"></output></span>
+               id="score_it_output"  for="score1"  name="score_it"></output></span>
           <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;"></span></h4>
         </div>
         <span  style="font-weight: bold; font-family: Berlin Sans FB;"></span><textarea
@@ -151,7 +166,7 @@
              style="width: 58px; height: 58px;"  alt="client_jp"  src="im_js/profil_fr.png"></span></div>
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;">SCORE</span></h4>
       <span  style="font-weight: bold; color: rgb(255, 255, 255); font-family: Berlin Sans FB;"><output
-           for="score2"  name="score_jp">&nbsp;&nbsp;&nbsp; &nbsp;</output></span>
+           id="score_jp_output"  for="score2"  name="score_jp"></output></span>&nbsp;
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;"></span></h4>
       <span  style="font-family: Ebrima;"><img  style="width: 261px; height: 118px;"
            title="Restaurant Français"  alt="Restaurant Français"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/francais.jpg">
@@ -164,8 +179,8 @@
          id="score3"  style="font-family: Berlin Sans FB; font-weight: bold;"><span
            style="color: rgb(255, 255, 255);"></span></span>
       <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;">SCORE</span></h4>
-      <span  style="font-family: Berlin Sans FB; font-weight: bold;"><output  for="score3"
-           name="score_fr"></output><br>
+      <span  style="font-family: Berlin Sans FB; font-weight: bold;"><output  id="score_fr_output"
+           for="score3"  name="score_fr"></output><br>
         <span  style="color: rgb(255, 255, 255);"></span></span>
       <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;"></span></h4>
       <br>
