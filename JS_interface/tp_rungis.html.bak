@@ -93,6 +93,21 @@
   background-color: rgb(255, 0, 0);
 }
 
+#client_it_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
+#client_fr_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
+#client_jp_output {  
+  color: rgb(255, 255, 255);  
+  background-color: rgb(0, 0, 0);
+}
+
 </style></head>
   <body>
     <h1  style="text-align: center; background-color: rgb(192, 192, 192);"><span
@@ -110,8 +125,8 @@
          src="im_js/sign_it.png">&nbsp; <img  style="width: 82px; height: 103px;"
          alt="it_menu1"  src="im_js/it_menu1.png"> &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"
          alt="it_menu2"  src="im_js/it_menu2.png"> &nbsp; &nbsp;&nbsp;&nbsp;<output
-         for="new_client_it"  name="client_it"></output> &nbsp;&nbsp;<img  style="width: 60px; height: 60px;"
-         alt="client_it"  src="im_js/profil_it.png">
+         id="client_it_output"  for="new_client_it"  name="client_it"></output>
+      &nbsp;&nbsp;<img  style="width: 60px; height: 60px;"  alt="client_it"  src="im_js/profil_it.png">
       <div  style="text-align: left;">
         <div  style="text-align: center;">
           <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;">SCORE
@@ -130,9 +145,8 @@
            id="open_jp"  style="width: 42px; height: 42px;"  alt="open_jp"  src="im_js/sign_jp.png">&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu1"  src="im_js/jp_menu1.png">&nbsp;&nbsp;&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu2"  src="im_js/jp_menu2.png">&nbsp;&nbsp;&nbsp;&nbsp;<span
-           style="font-family: Ebrima;"> &nbsp;&nbsp; </span><span  style="font-family: Ebrima;"><output
-             for="new_client_jp"  name="client_jp"></output></span><span  style="font-family: Berlin Sans FB;"></span><span
-           style="font-family: Berlin Sans FB;">&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+           style="font-family: Ebrima;"> <output  id="client_jp_output"  name="client_jp"></output>&nbsp;</span><span
+           style="font-family: Berlin Sans FB;">&nbsp;&nbsp;&nbsp; </span><span
            style="font-family: Berlin Sans FB; text-decoration: underline;"><img
              style="width: 58px; height: 58px;"  alt="client_jp"  src="im_js/profil_fr.png"></span></div>
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;">SCORE</span></h4>
@@ -145,9 +159,10 @@
            src="im_js/sign_fr.png"> &nbsp;<img  style="width: 82px; height: 118px;"
            alt="fr_menu1"  src="im_js/fr_menu1.png"> &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"
            alt="fr_menu2"  src="im_js/fr_menu2.png"> &nbsp; &nbsp;&nbsp; <output
-           for="new_client_fr"  name="client_fr"></output>&nbsp; &nbsp; <img  style="width: 58px; height: 58px;"
-           alt="client_fr"  src="im_js/profil_jp.png"></span><span  id="score3"
-         style="font-family: Berlin Sans FB; font-weight: bold;"><span  style="color: rgb(255, 255, 255);"></span></span>
+           id="client_fr_output"  for="new_client_fr"  name="client_fr"></output>&nbsp;
+        &nbsp; <img  style="width: 58px; height: 58px;"  alt="client_fr"  src="im_js/profil_jp.png"></span><span
+         id="score3"  style="font-family: Berlin Sans FB; font-weight: bold;"><span
+           style="color: rgb(255, 255, 255);"></span></span>
       <h4><span  style="text-decoration: underline; font-family: Berlin Sans FB;">SCORE</span></h4>
       <span  style="font-family: Berlin Sans FB; font-weight: bold;"><output  for="score3"
            name="score_fr"></output><br>
