@@ -314,7 +314,7 @@ class Restaurant {
     console.log(chalk.gray('ITALIAN RESTAURANT SCORE : ' +
       (this.italianScore * this.closeTimeResItalian)));
     var scoreHtml = this.frenchScore*this.closeTimeResFrench;
-    document.getElementById('score_it_output').innerHTML = (scoreHtml.toString());
+    //document.getElementById('score_it_output').innerHTML = (scoreHtml.toString());
   }
 
   scoreJap() {
@@ -329,7 +329,7 @@ class Restaurant {
     console.log(chalk.gray('JAPANESE RESTAURANT SCORE : '+
       (this.japScore * this.closeTimeResJap)));
     var scoreHtml = this.frenchScore*this.closeTimeResFrench;
-    document.getElementById('score_jp_output').innerHTML = (scoreHtml.toString());
+   // document.getElementById('score_jp_output').innerHTML = (scoreHtml.toString());
   }
 
   scoreFr() {
@@ -344,7 +344,7 @@ class Restaurant {
     console.log(chalk.gray('FRENCH RESTAURANT SCORE : ' +
       (this.frenchScore * this.closeTimeResFrench)));
     var scoreHtml = this.frenchScore*this.closeTimeResFrench;
-    document.getElementById('score_fr_output').innerHTML = (scoreHtml.toString());
+    //document.getElementById('score_fr_output').innerHTML = (scoreHtml.toString());
   }
 }
 module.exports.Restaurant = Restaurant;

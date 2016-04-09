@@ -6,8 +6,10 @@ var client = require('./Client.js');
 const chalk = require('chalk');
 const EventEmitter = require('events').EventEmitter;
 const event = new EventEmitter();
-//const dom = require('node-dom');
-//const electron = require('electron');
+
+
+
+
 
 
 const OPEN_RUNGIS = 5;
@@ -39,21 +41,20 @@ function clock() {
     minute = 0;
     hour += 1;
     event.emit('hour');
-    //openRungis();
-    //openRes();
+
   }
 
   if (hour >= 0 && hour <= 11 || hour >= 14 && hour <= 18) {
     if (minute % 20 === 0) {
       event.emit('minute');
-      //createClient();
+
     }
   }
 
   if (hour > 11 && hour < 14 || hour > 18 && hour <= 23) {
     if (minute % 8 === 0) {
       event.emit('minute2');
-      //createClient();
+
     }
   }
 
@@ -65,35 +66,33 @@ function clock() {
       console.log(chalk.yellow('=========== FIN DE LA SIMULATION ============'));
       clearInterval(timer);
       event.emit('day');
-      //r.scoreIt();
-      //r.scoreJap();
-      //r.scoreFr();
+
     }
   }
-  var clockHtml = document.getElementById('clock');
-  clockHtml.innerHTML = (hour + 'h' + minute +'min');
+  //var clockHtml = document.getElementById('clock');
+  //clockHtml.innerHTML = (hour + 'h' + minute +'min');
   console.log(hour + ':' + minute);
 }
 
 
-event.on('hour', () => {openRungis()});
-event.on('hour', () => {openRes()});
-event.on('minute', () => {createClient()});
-event.on('minute2', () => {createClient()});
-event.on('day', () => {r.scoreIt()});
-event.on('day', () => {r.scoreJap()});
-event.on('day', () => {r.scoreFr()});
+event.on('hour', () => {openRungis();});
+event.on('hour', () => {openRes();});
+event.on('minute', () => {createClient();});
+event.on('minute2', () => {createClient();});
+event.on('day', () => {r.scoreIt();});
+event.on('day', () => {r.scoreJap();});
+event.on('day', () => {r.scoreFr();});
 
 //=======OPENING RUNGIS=========
 
 function openRungis() {
   if (hour === OPEN_RUNGIS) {
     m.openingRungis();
-    document.getElementById('rungis_open_close').style.backgroundColor = '#2AAA00';
+    //document.getElementById('rungis_open_close').style.backgroundColor = '#2AAA00';
   }
   else if (hour === CLOSE_RUNGIS) {
     m.closingRungis();
-    document.getElementById('rungis_open_close').style.backgroundColor = '#F01802';
+    //document.getElementById('rungis_open_close').style.backgroundColor = '#F01802';
 
 
 
@@ -106,40 +105,40 @@ function openRungis() {
 function openRes() {
   if (hour == r.getOpenTimeResItalian()) {
       r.openingResItalian();
-      //document.getElementById('open_close_it').value.Color = '#F01802';
-      document.getElementById('open_close_it').innerHTML = ('OPEN');
+
+      //document.getElementById('open_close_it').innerHTML = ('OPEN');
 
   }
   else if (r.getOpenTimeResItalian()) {
     if (hour == r.getCloseTimeResItalian()) {
         r.closingResItalian();
-      //document.getElementById('open_close_it').value.Color = '#F01802';
-      document.getElementById('open_close_it').innerHTML = ('OPEN');
+
+      //document.getElementById('open_close_it').innerHTML = ('OPEN');
     }
   }
   if (hour == r.getOpenTimeResJap()) {
       r.openingResJap();
-    //document.getElementById('open_close_jp').style.Color = '#2AAA00';
-    document.getElementById('open_close_jp').innerHTML = ('OPEN');
+
+    //document.getElementById('open_close_jp').innerHTML = ('OPEN');
   }
   else if (r.getOpenTimeResJap()) {
     if (hour == r.getCloseTimeResJap()) {
         r.closingResJap();
-      //document.getElementById('open_close_jp').style.Color = '#F01802';
-      document.getElementById('open_close_jp').innerHTML = ("CLOSE");
+
+      //document.getElementById('open_close_jp').innerHTML = ('CLOSE');
 
     }
   }
   if (hour == r.getOpenTimeResFrench()) {
       r.openingResFrench();
-    //document.getElementById('open_close_fr').style.Color = '#2AAA00';
-    document.getElementById('open_close_fr').innerHTML = ('OPEN');
+
+    //document.getElementById('open_close_fr').innerHTML = ('OPEN');
   }
   else if (r.getOpenTimeResFrench()) {
     if (hour == r.getCloseTimeResFrench()) {
         r.closingResFrench();
-      //document.getElementById('open_close_fr').style.Color = '#F01802';
-      document.getElementById('open_close_fr').innerHTML = ('CLOSE');
+
+      //document.getElementById('open_close_fr').innerHTML = ('CLOSE');
     }
 
   }
@@ -158,7 +157,7 @@ function createClient() {
       r.needRefuelingItalian();
       r.scoreIt();
       nbClientIt++;
-      document.getElementById('client_it_output').innerHTML = (nbClientIt.toString());
+      //document.getElementById('client_it_output').innerHTML = (nbClientIt.toString());
 
 
     }
@@ -191,7 +190,7 @@ function createClient() {
       r.needRefuelingJap();
       r.scoreJap();
       nbClientJap++;
-      document.getElementById('client_jp_output').innerHTML = (nbClientJap.toString());
+      //document.getElementById('client_jp_output').innerHTML = (nbClientJap.toString());
     }
     else {
       console.log(chalk.red('The japanese restaurant is closed, wait 10 minutes ! '));
@@ -221,7 +220,7 @@ function createClient() {
       r.needRefuelingFrench();
       r.scoreFr();
       nbClientFr++;
-      document.getElementById('client_fr_output').innerHTML = (nbClientFr.toString());
+      //document.getElementById('client_fr_output').innerHTML = (nbClientFr.toString());
 
     }
     else {
