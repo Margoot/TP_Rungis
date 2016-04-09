@@ -1,7 +1,7 @@
 'use strict';
 const chalk = require('chalk');
 var Promise = require('bluebird');
-const MS_FOR_MIN=10;
+const MS_FOR_MIN = 10;
 
 
 class Restaurant {
@@ -109,6 +109,7 @@ class Restaurant {
   getOpenTimeResFrench() {
     return this.openTimeResFrench;
   }
+
   getCloseTimeResFrench() {
     return this.closeTimeResFrench;
   }
@@ -174,22 +175,23 @@ class Restaurant {
           }
         }
       }
-        if (numIng === Object.keys(recipe).length)
-          resolve();
-        else
-          reject();
+      if (numIng === Object.keys(recipe).length)
+        resolve();
+      else
+        reject();
     });
   }
+
   useIngredients(stock, recipe) {
     console.log(chalk.magenta('New stock after consumption : '));
     for (var i in recipe) {
-      if(recipe.hasOwnProperty(i)){
-      for (var j in stock) {
-        if (i === j && stock.hasOwnProperty(j)) {
-          stock[j]--;
+      if (recipe.hasOwnProperty(i)) {
+        for (var j in stock) {
+          if (i === j && stock.hasOwnProperty(j)) {
+            stock[j]--;
+          }
         }
       }
-    }
     }
     console.log(stock);
   }
@@ -199,16 +201,18 @@ class Restaurant {
     setTimeout(()=> {
       if (cookTime > resistance) {
         console.log(
-          chalk.red('I already wait ' + resistance + ' minutes, that\'s too long !'));
+          chalk.red(
+            'I already wait ' + resistance + ' minutes, that\'s too long !'));
       }
       else {
-        console.log(chalk.green('Your meal is ready !! (cookTime'+ cookTime + ')'));
+        console.log(
+          chalk.green('Your meal is ready !! (cookTime' + cookTime + ')'));
         if (cookTime < (resistance - 10))
           this.scoreCase = 2;
         else
           this.scoreCase = 1;
       }
-    }, cookTime*MS_FOR_MIN);
+    }, cookTime * MS_FOR_MIN);
   }
 
   createRecipe2(stock, recipe) {
@@ -233,6 +237,7 @@ class Restaurant {
         reject();
     });
   }
+
   //====== REFUELING ========
 
   needRefuelingItalian() {
@@ -244,15 +249,17 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log(chalk.cyan('The italian restaurant is going to Rungis Market ! '));
+      console.log(
+        chalk.cyan('The italian restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockItalian) {
-          if(this.stockItalian.hasOwnProperty(i)) {
+          if (this.stockItalian.hasOwnProperty(i)) {
             this.stockItalian[i] = 20;
-          }}
+          }
+        }
         console.log(chalk.cyan('The italian restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime*MS_FOR_MIN);
+      }, refuelingTime * MS_FOR_MIN);
       this.emptyStock = 0;
     }
 
@@ -267,15 +274,17 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log(chalk.cyan('The japanese restaurant is going to Rungis Market ! '));
+      console.log(
+        chalk.cyan('The japanese restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockJap) {
-          if(this.stockJap.hasOwnProperty(i)){
-          this.stockJap[i] = 20;
-        }}
+          if (this.stockJap.hasOwnProperty(i)) {
+            this.stockJap[i] = 20;
+          }
+        }
         console.log(chalk.cyan('The japanese restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime*MS_FOR_MIN);
+      }, refuelingTime * MS_FOR_MIN);
       this.emptyStock = 0;
     }
   }
@@ -289,15 +298,17 @@ class Restaurant {
       }
     }
     if (this.emptyStock >= 4) {
-      console.log(chalk.cyan('The french restaurant is going to Rungis Market ! '));
+      console.log(
+        chalk.cyan('The french restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockFrench) {
-          if(this.stockFrench.hasOwnProperty(i)){
-          this.stockFrench[i] = 20;
-        }}
+          if (this.stockFrench.hasOwnProperty(i)) {
+            this.stockFrench[i] = 20;
+          }
+        }
         console.log(chalk.cyan('The french restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime*MS_FOR_MIN);
+      }, refuelingTime * MS_FOR_MIN);
       this.emptyStock = 0;
     }
   }
@@ -313,7 +324,7 @@ class Restaurant {
     }
     console.log(chalk.gray('ITALIAN RESTAURANT SCORE : ' +
       (this.italianScore * this.closeTimeResItalian)));
-    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
+    var scoreHtml = this.frenchScore * this.closeTimeResFrench;
     //document.getElementById('score_it_output').innerHTML = (scoreHtml.toString());
   }
 
@@ -326,10 +337,10 @@ class Restaurant {
         this.japScore = this.japScore + 2;
         break;
     }
-    console.log(chalk.gray('JAPANESE RESTAURANT SCORE : '+
+    console.log(chalk.gray('JAPANESE RESTAURANT SCORE : ' +
       (this.japScore * this.closeTimeResJap)));
-    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
-   // document.getElementById('score_jp_output').innerHTML = (scoreHtml.toString());
+    var scoreHtml = this.frenchScore * this.closeTimeResFrench;
+    // document.getElementById('score_jp_output').innerHTML = (scoreHtml.toString());
   }
 
   scoreFr() {
@@ -343,7 +354,7 @@ class Restaurant {
     }
     console.log(chalk.gray('FRENCH RESTAURANT SCORE : ' +
       (this.frenchScore * this.closeTimeResFrench)));
-    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
+    var scoreHtml = this.frenchScore * this.closeTimeResFrench;
     //document.getElementById('score_fr_output').innerHTML = (scoreHtml.toString());
   }
 }

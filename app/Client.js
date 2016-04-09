@@ -35,7 +35,8 @@ class Client {
         this.recipe2 = restaurant.recipe2Italian;
         this.restauItalianChoice = true;
         console.log(
-          chalk.blue('We are checking the if the italian restaurant is opened.'));
+          chalk.blue(
+            'We are checking the if the italian restaurant is opened.'));
 
         break;
       case 1 :
@@ -44,7 +45,8 @@ class Client {
         this.recipe2 = restaurant.recipe2Jap;
         this.restauJapChoice = true;
         console.log(
-            chalk.blue('We are checking the if the japanese restaurant is opened.'));
+          chalk.blue(
+            'We are checking the if the japanese restaurant is opened.'));
         break;
       case 2 :
         this.stock = restaurant.stockFrench;
@@ -52,7 +54,8 @@ class Client {
         this.recipe2 = restaurant.recipe2French;
         this.restauFrenchChoice = true;
         console.log(
-            chalk.blue('We are checking the if the french restaurant is opened.'));
+          chalk.blue(
+            'We are checking the if the french restaurant is opened.'));
         break;
       default :
         console.log(chalk.red('Error'));
@@ -63,7 +66,8 @@ class Client {
   choiceRecipe(restaurant) {
     switch (this.recipeRandom) {
       case 0 :
-        console.log(chalk.blue('We are checking if your recipe can be cooked ! '));
+        console.log(
+          chalk.blue('We are checking if your recipe can be cooked ! '));
         restaurant.createRecipe1(this.stock, this.recipe1)
           .then(() => {
             console.log(chalk.green('We are cooking your meal : '));
@@ -75,7 +79,7 @@ class Client {
             restaurant.createRecipe2(this.stock, this.recipe2)
               .then(() => {
                 console.log(
-                chalk.green('We are cooking your meal : '));
+                  chalk.green('We are cooking your meal : '));
                 console.log(this.recipe2);
                 restaurant.useIngredients(this.stock, this.recipe2);
                 restaurant.cook(this.resistance);
@@ -87,7 +91,8 @@ class Client {
           });
         break;
       case 1 :
-        console.log(chalk.blue('We are checking if your recipe can be cooked ! '));
+        console.log(
+          chalk.blue('We are checking if your recipe can be cooked ! '));
         restaurant.createRecipe2(this.stock, this.recipe2)
           .then(() => {
             console.log(chalk.green('We are cooking your meal : '));
@@ -99,14 +104,14 @@ class Client {
             restaurant.createRecipe1(this.stock, this.recipe1)
               .then(() => {
                 console.log(
-                chalk.green('We are cooking your meal : '));
+                  chalk.green('We are cooking your meal : '));
                 console.log(this.recipe1);
                 restaurant.useIngredients(this.stock, this.recipe1);
                 restaurant.cook(this.resistance);
               })
               .catch(
                 () => console.log(
-                chalk.red('No available recipe, sorry ! ')));
+                  chalk.red('No available recipe, sorry ! ')));
           });
         break;
     }

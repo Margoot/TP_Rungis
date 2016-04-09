@@ -8,10 +8,6 @@ const EventEmitter = require('events').EventEmitter;
 const event = new EventEmitter();
 
 
-
-
-
-
 const OPEN_RUNGIS = 5;
 const CLOSE_RUNGIS = 14;
 const WAIT_TO_ENTER = 10;
@@ -63,7 +59,8 @@ function clock() {
     day += 1;
     console.log(chalk.yellow('=========== DAY ' + day + ' ==========='));
     if (day == 4) {
-      console.log(chalk.yellow('=========== FIN DE LA SIMULATION ============'));
+      console.log(
+        chalk.yellow('=========== FIN DE LA SIMULATION ============'));
       clearInterval(timer);
       event.emit('day');
 
@@ -75,13 +72,27 @@ function clock() {
 }
 
 
-event.on('hour', () => {openRungis();});
-event.on('hour', () => {openRes();});
-event.on('minute', () => {createClient();});
-event.on('minute2', () => {createClient();});
-event.on('day', () => {r.scoreIt();});
-event.on('day', () => {r.scoreJap();});
-event.on('day', () => {r.scoreFr();});
+event.on('hour', () => {
+  openRungis();
+});
+event.on('hour', () => {
+  openRes();
+});
+event.on('minute', () => {
+  createClient();
+});
+event.on('minute2', () => {
+  createClient();
+});
+event.on('day', () => {
+  r.scoreIt();
+});
+event.on('day', () => {
+  r.scoreJap();
+});
+event.on('day', () => {
+  r.scoreFr();
+});
 
 //=======OPENING RUNGIS=========
 
@@ -95,7 +106,6 @@ function openRungis() {
     //document.getElementById('rungis_open_close').style.backgroundColor = '#F01802';
 
 
-
   }
 }
 
@@ -104,39 +114,39 @@ function openRungis() {
 
 function openRes() {
   if (hour == r.getOpenTimeResItalian()) {
-      r.openingResItalian();
+    r.openingResItalian();
 
-      //document.getElementById('open_close_it').innerHTML = ('OPEN');
+    //document.getElementById('open_close_it').innerHTML = ('OPEN');
 
   }
   else if (r.getOpenTimeResItalian()) {
     if (hour == r.getCloseTimeResItalian()) {
-        r.closingResItalian();
+      r.closingResItalian();
 
       //document.getElementById('open_close_it').innerHTML = ('OPEN');
     }
   }
   if (hour == r.getOpenTimeResJap()) {
-      r.openingResJap();
+    r.openingResJap();
 
     //document.getElementById('open_close_jp').innerHTML = ('OPEN');
   }
   else if (r.getOpenTimeResJap()) {
     if (hour == r.getCloseTimeResJap()) {
-        r.closingResJap();
+      r.closingResJap();
 
       //document.getElementById('open_close_jp').innerHTML = ('CLOSE');
 
     }
   }
   if (hour == r.getOpenTimeResFrench()) {
-      r.openingResFrench();
+    r.openingResFrench();
 
     //document.getElementById('open_close_fr').innerHTML = ('OPEN');
   }
   else if (r.getOpenTimeResFrench()) {
     if (hour == r.getCloseTimeResFrench()) {
-        r.closingResFrench();
+      r.closingResFrench();
 
       //document.getElementById('open_close_fr').innerHTML = ('CLOSE');
     }
@@ -162,7 +172,8 @@ function createClient() {
 
     }
     else {
-      console.log(chalk.red('The italian restaurant is closed, wait 10 minutes ! '));
+      console.log(
+        chalk.red('The italian restaurant is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauItalianChoice() === true) {
@@ -175,7 +186,8 @@ function createClient() {
           }
           else
             console.log(
-              chalk.red('2nd try, the italian restaurant is still closed, seen you soon ! '));
+              chalk.red(
+                '2nd try, the italian restaurant is still closed, seen you soon ! '));
         }
       }, WAIT_TO_ENTER);
 
@@ -193,7 +205,8 @@ function createClient() {
       //document.getElementById('client_jp_output').innerHTML = (nbClientJap.toString());
     }
     else {
-      console.log(chalk.red('The japanese restaurant is closed, wait 10 minutes ! '));
+      console.log(
+        chalk.red('The japanese restaurant is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauJapChoice() === true) {
@@ -206,7 +219,8 @@ function createClient() {
           }
           else
             console.log(
-                chalk.red('2nd try, the japanese restaurant is still closed, seen you soon ! '));
+              chalk.red(
+                '2nd try, the japanese restaurant is still closed, seen you soon ! '));
         }
       }, WAIT_TO_ENTER);
 
@@ -224,7 +238,8 @@ function createClient() {
 
     }
     else {
-      console.log(chalk.red('The japanese french is closed, wait 10 minutes ! '));
+      console.log(
+        chalk.red('The japanese french is closed, wait 10 minutes ! '));
       setTimeout(() => {
         nameClient.choiceRestaurant(r);
         if (nameClient.getRestauFrenchChoice() === true) {
@@ -236,8 +251,9 @@ function createClient() {
 
           }
           else {
-              console.log(
-                  chalk.red('2nd try, the french restaurant is still closed, seen you soon ! '));
+            console.log(
+              chalk.red(
+                '2nd try, the french restaurant is still closed, seen you soon ! '));
           }
         }
       }, WAIT_TO_ENTER);

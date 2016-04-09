@@ -3,7 +3,8 @@ const chalk = require('chalk');
 
 
 class Marchand {
-  constructor() {}
+  constructor() {
+  }
 
   openingRungis() {
     console.log(chalk.cyan('RUNGIS MARKET : OPENED'));
