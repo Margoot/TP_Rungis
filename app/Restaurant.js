@@ -1,21 +1,17 @@
 'use strict';
 const chalk = require('chalk');
 var Promise = require('bluebird');
+const MS_FOR_MIN=10;
+
 
 class Restaurant {
   constructor() {
-    this.openTimeResItalian =
-      Math.floor(Math.random() * 24);
-    this.closeTimeResItalian =
-      Math.floor(Math.random() * 24);
-    this.openTimeResJap =
-      Math.floor(Math.random() * 24);
-    this.closeTimeResJap =
-      Math.floor(Math.random() * 24);
-    this.openTimeResFrench =
-      Math.floor(Math.random() * 24);
-    this.closeTimeResFrench =
-      Math.floor(Math.random() * 24);
+    this.openTimeResItalian = 11;
+    this.closeTimeResItalian = 16;
+    this.openTimeResJap = 8;
+    this.closeTimeResJap = 19;
+    this.openTimeResFrench = 10;
+    this.closeTimeResFrench = 23;
     this.emptyStock = 0;
     this.openResItalian = false;
     this.openResJap = false;
@@ -166,30 +162,34 @@ class Restaurant {
   createRecipe1(stock, recipe) {
     return new Promise((resolve, reject) => {
       var numIng = 0;
+      console.log(recipe);
       for (var i in recipe) {
-        for (var j in stock) {
-          if (i === j && stock.hasOwnProperty(j)) {
-            if (stock[j] > 0) {
-              console.log(recipe[i]);
-              numIng++;
+        if (recipe.hasOwnProperty(i)) {
+          for (var j in stock) {
+            if (i === j && stock.hasOwnProperty(j)) {
+              if (stock[j] > 0) {
+                numIng++;
+              }
             }
           }
         }
+      }
         if (numIng === Object.keys(recipe).length)
           resolve();
         else
           reject();
-      }
     });
   }
   useIngredients(stock, recipe) {
     console.log(chalk.magenta('New stock after consumption : '));
     for (var i in recipe) {
+      if(recipe.hasOwnProperty(i)){
       for (var j in stock) {
         if (i === j && stock.hasOwnProperty(j)) {
           stock[j]--;
         }
       }
+    }
     }
     console.log(stock);
   }
@@ -208,7 +208,7 @@ class Restaurant {
         else
           this.scoreCase = 1;
       }
-    }, cookTime);
+    }, cookTime*MS_FOR_MIN);
   }
 
   createRecipe2(stock, recipe) {
@@ -216,11 +216,13 @@ class Restaurant {
       var numIng = 0;
       console.log(recipe);
       for (var i in recipe) {
-        for (var j in stock) {
-          if (i === j && stock.hasOwnProperty(j)) {
-            if (stock[j] > 0) {
+        if (recipe.hasOwnProperty(i)) {
+          for (var j in stock) {
+            if (i === j && stock.hasOwnProperty(j)) {
+              if (stock[j] > 0) {
 
-              numIng++;
+                numIng++;
+              }
             }
           }
         }
@@ -237,7 +239,7 @@ class Restaurant {
     var refuelingTime =
       Math.floor((60 * Math.random()) + 15);
     for (var i in this.stockItalian) {
-      if (this.stockItalian[i] === 0) {
+      if (this.stockItalian[i] === 0 && this.stockItalian.hasOwnProperty(i)) {
         this.emptyStock++;
       }
     }
@@ -245,11 +247,12 @@ class Restaurant {
       console.log(chalk.cyan('The italian restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockItalian) {
-          this.stockItalian[i] = 20;
-        }
+          if(this.stockItalian.hasOwnProperty(i)) {
+            this.stockItalian[i] = 20;
+          }}
         console.log(chalk.cyan('The italian restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime);
+      }, refuelingTime*MS_FOR_MIN);
       this.emptyStock = 0;
     }
 
@@ -267,11 +270,12 @@ class Restaurant {
       console.log(chalk.cyan('The japanese restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockJap) {
+          if(this.stockJap.hasOwnProperty(i)){
           this.stockJap[i] = 20;
-        }
+        }}
         console.log(chalk.cyan('The japanese restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime);
+      }, refuelingTime*MS_FOR_MIN);
       this.emptyStock = 0;
     }
   }
@@ -288,11 +292,12 @@ class Restaurant {
       console.log(chalk.cyan('The french restaurant is going to Rungis Market ! '));
       setTimeout(() => {
         for (var i in this.stockFrench) {
+          if(this.stockFrench.hasOwnProperty(i)){
           this.stockFrench[i] = 20;
-        }
+        }}
         console.log(chalk.cyan('The french restaurant done is refueling in ' +
           refuelingTime + ' minutes'));
-      }, refuelingTime);
+      }, refuelingTime*MS_FOR_MIN);
       this.emptyStock = 0;
     }
   }
@@ -306,8 +311,10 @@ class Restaurant {
         this.italianScore = this.italianScore + 2;
         break;
     }
-    console.log(chalk.bgYellow('ITALIAN RESTAURANT SCORE : ' +
+    console.log(chalk.gray('ITALIAN RESTAURANT SCORE : ' +
       (this.italianScore * this.closeTimeResItalian)));
+    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
+    document.getElementById('score_it_output').innerHTML = (scoreHtml.toString());
   }
 
   scoreJap() {
@@ -319,8 +326,10 @@ class Restaurant {
         this.japScore = this.japScore + 2;
         break;
     }
-    console.log(chalk.bgYellow('JAPANESE RESTAURANT SCORE : '+
+    console.log(chalk.gray('JAPANESE RESTAURANT SCORE : '+
       (this.japScore * this.closeTimeResJap)));
+    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
+    document.getElementById('score_jp_output').innerHTML = (scoreHtml.toString());
   }
 
   scoreFr() {
@@ -332,8 +341,10 @@ class Restaurant {
         this.frenchScore = this.frenchScore + 2;
         break;
     }
-    console.log(chalk.bgYellow('FRENCH RESTAURANT SCORE : ' +
+    console.log(chalk.gray('FRENCH RESTAURANT SCORE : ' +
       (this.frenchScore * this.closeTimeResFrench)));
+    var scoreHtml = this.frenchScore*this.closeTimeResFrench;
+    document.getElementById('score_fr_output').innerHTML = (scoreHtml.toString());
   }
 }
 module.exports.Restaurant = Restaurant;

@@ -1,6 +1,7 @@
 'use strict';
 
 const chalk = require('chalk');
+const Restaurant = require('./Restaurant.js');
 const NB_RESTAURANT = 3;
 const NB_RECIPE = 2;
 
@@ -106,7 +107,7 @@ class Client {
               })
               .catch(
                 () => console.log(
-                chalk.red('No available recipe, sorry ! '));
+                chalk.red('No available recipe, sorry ! ')));
           });
         break;
     }

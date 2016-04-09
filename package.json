@@ -2,9 +2,14 @@
   "name": "TP_Rungis",
   "version": "1.0.0",
   "description": "",
-  "main": "mainElectron.js",
+  "main": "Main.js",
   "dependencies": {
-    "pretty-bytes": "^2.0.1"
+    "bluebird": "^3.3.4",
+    "pretty-bytes": "^2.0.1",
+    "chalk": "^1.1.1",
+    "grunt": "^0.4.5",
+    "winston": "^2.2.0",
+    "electron": "^0.4.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -14,8 +19,8 @@
     "grunt-jscs": "^2.8.0",
     "jshint-stylish": "^2.1.0",
     "load-grunt-tasks": "^3.4.1",
-    "time-grunt": "^1.3.0",
-    "electron-prebuilt": "^0.35.2"
+    "time-grunt": "^1.3.0"
+
   },
   "scripts": {
     "start" : "electron mainElectron.js"
