@@ -71,7 +71,7 @@
 
 #rungis_open_close {  
   position: absolute;  
-  background-color: rgb(240, 24, 2);
+  background-color: rgb(255, 0, 0);
 }
 
 #open_close_it_restaurant {  
@@ -124,15 +124,24 @@
 }
 
 #open_close_it {  
-  background-color: rgb(240, 24, 2);
+  background-color: rgb(240, 24, 2);  
+  font-size: 16px;  
+  width: 50px;  
+  height: 20px;
 }
 
 #open_close_jp {  
-  background-color: rgb(240, 24, 2);
+  background-color: rgb(240, 24, 2);  
+  font-size: 16px;  
+  width: 50px;  
+  height: 20px;
 }
 
 #open_close_fr {  
-  background-color: rgb(255, 0, 0);
+  background-color: rgb(240, 24, 2);  
+  width: 50px;  
+  height: 20px;  
+  font-size: 16px;
 }
 
 </style></head>
@@ -148,8 +157,8 @@
     <div  id="fond_restaurant"  style="text-align: center; background-color: rgb(0, 0, 0);"><img
          alt="Restaurant Italien"  style="width: 261px; height: 103px;"  title="Restaurant Italien"
          src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/italien.jpg">&nbsp;
-      <label  id="open_close_it"  style="font-family: Berlin Sans FB;">CLOSE</label>&nbsp;
-      <img  style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
+      <textarea  id="open_close_it"  name="open_close_it">CLOSE</textarea> <img
+         style="width: 82px; height: 103px;"  alt="it_menu1"  src="im_js/it_menu1.png">
       &nbsp; &nbsp;<img  style="width: 82px; height: 103px;"  alt="it_menu2"  src="im_js/it_menu2.png">
       &nbsp; &nbsp;&nbsp;&nbsp;<output  id="client_it_output"  for="new_client_it"
          name="client_it"></output> &nbsp;&nbsp;<img  style="width: 60px; height: 60px;"
@@ -169,8 +178,8 @@
            style="font-style: italic; font-weight: bold;"> </span></div>
       <div  style="text-align: center;">&nbsp; <img  style="width: 261px; height: 125px;"
            title=" Restaurant Japonais"  alt="Restaurant Japonais"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/japonais.jpg">&nbsp;
-        <label  id="open_close_jp"  style="font-family: Berlin Sans FB;">CLOSE</label>&nbsp;
-        <img  style="width: 82px; height: 125px;"  alt="jp_menu1"  src="im_js/jp_menu1.png">&nbsp;&nbsp;&nbsp;
+        <textarea  id="open_close_jp"  name="open_close_jp">CLOSE</textarea> <img
+           style="width: 82px; height: 125px;"  alt="jp_menu1"  src="im_js/jp_menu1.png">&nbsp;&nbsp;&nbsp;
         <img  style="width: 82px; height: 125px;"  alt="jp_menu2"  src="im_js/jp_menu2.png">&nbsp;&nbsp;&nbsp;&nbsp;<span
            style="font-family: Ebrima;"> <output  id="client_jp_output"  name="client_jp"></output>&nbsp;</span><span
            style="font-family: Berlin Sans FB;">&nbsp;&nbsp;&nbsp; </span><span
@@ -182,8 +191,8 @@
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;"></span></h4>
       <span  style="font-family: Ebrima;"><img  style="width: 261px; height: 118px;"
            title="Restaurant Français"  alt="Restaurant Français"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/francais.jpg">&nbsp;
-        <label  id="open_close_fr"  style="font-family: Berlin Sans FB;">CLOSE</label>&nbsp;
-        <img  style="width: 82px; height: 118px;"  alt="fr_menu1"  src="im_js/fr_menu1.png">
+        <textarea  id="open_close_fr"  name="open_close_fr">CLOSE</textarea> <img
+           style="width: 82px; height: 118px;"  alt="fr_menu1"  src="im_js/fr_menu1.png">
         &nbsp; &nbsp;<img  style="width: 82px; height: 118px;"  alt="fr_menu2"  src="im_js/fr_menu2.png">
         &nbsp; &nbsp;&nbsp; <output  id="client_fr_output"  for="new_client_fr"
            name="client_fr"></output>&nbsp; &nbsp; <img  style="width: 58px; height: 58px;"
