@@ -79,15 +79,18 @@
 }
 
 #open_it {  
-  position: relative;
+  position: relative;  
+  background-color: rgb(255, 0, 0);
 }
 
 #open_jp {  
-  position: relative;
+  position: relative;  
+  background-color: rgb(255, 0, 0);
 }
 
 #open_fr {  
-  position: relative;
+  position: relative;  
+  background-color: rgb(255, 0, 0);
 }
 
 </style></head>
@@ -134,7 +137,7 @@
              style="width: 58px; height: 58px;"  alt="client_jp"  src="im_js/profil_fr.png"></span></div>
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;">SCORE</span></h4>
       <span  style="font-weight: bold; color: rgb(255, 255, 255); font-family: Berlin Sans FB;"><output
-           for="score2"  name="score_jp"></output></span>
+           for="score2"  name="score_jp">&nbsp;&nbsp;&nbsp; &nbsp;</output></span>
       <h4><span  style="font-family: Berlin Sans FB; text-decoration: underline;"></span></h4>
       <span  style="font-family: Ebrima;"><img  style="width: 261px; height: 118px;"
            title="Restaurant Français"  alt="Restaurant Français"  src="file:///C:/Users/hp/Documents/Programmation/JS_interface/im_js/francais.jpg">
