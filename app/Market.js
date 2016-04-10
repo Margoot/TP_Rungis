@@ -1,8 +1,10 @@
 'use strict';
 const chalk = require('chalk');
 
-
-class Marchand {
+/**
+ * class to define opening and closing hours of the Rungis market
+ */
+class Market {
   constructor() {
   }
 
@@ -15,4 +17,4 @@ class Marchand {
   }
 }
 
-module.exports.Marchand = Marchand;
+module.exports.Market = Market;

@@ -8,8 +8,7 @@
     "pretty-bytes": "^2.0.1",
     "chalk": "^1.1.1",
     "grunt": "^0.4.5",
-    "winston": "^2.2.0",
-    "electron": "^0.4.1",
+    "electron": "^0.4.1"
 
   },
   "devDependencies": {
