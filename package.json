@@ -1,8 +1,16 @@
 {
-  "name": "sample_project",
+  "name": "TP_Rungis",
   "version": "1.0.0",
   "description": "",
-  "main": "Gruntfile.js",
+  "main": "Main.js",
+  "dependencies": {
+    "bluebird": "^3.3.4",
+    "pretty-bytes": "^2.0.1",
+    "chalk": "^1.1.1",
+    "grunt": "^0.4.5",
+    "electron": "^0.4.1"
+
+  },
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^1.0.0",
@@ -12,9 +20,10 @@
     "jshint-stylish": "^2.1.0",
     "load-grunt-tasks": "^3.4.1",
     "time-grunt": "^1.3.0"
+
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "electron mainElectron.js"
   },
   "author": "",
   "license": "ISC"
